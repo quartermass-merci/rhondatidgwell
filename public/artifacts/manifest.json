@@ -1,0 +1,158 @@
+{
+  "$schema": "./manifest.schema.json",
+  "generatedBy": "Phase 1 scaffold",
+  "note": "Original filename → served filename → source folder. Originals are untouched in the OneDrive working directory.",
+  "artifacts": [
+    {
+      "served": "assessment-unnamed-3.png",
+      "original": "unnamed (3).png",
+      "sourceFolder": "Assessment",
+      "type": "png"
+    },
+    {
+      "served": "annotated-abridged-growing-success.pdf",
+      "original": "Annotated Abridged Growing Success.pdf",
+      "sourceFolder": "Assessment",
+      "type": "pdf"
+    },
+    {
+      "served": "growing-success-12-takeaways.pptx",
+      "original": "Growing_Success_12_Takeaways_Modern.pptx",
+      "sourceFolder": "Assessment",
+      "type": "pptx"
+    },
+    {
+      "served": "levels-niveaux.pptx",
+      "original": "Levels_Niveaux_Modern.pptx",
+      "sourceFolder": "Assessment",
+      "type": "pptx"
+    },
+    {
+      "served": "student-led-conferences.pptx",
+      "original": "Student_Led_Conferences_Modern.pptx",
+      "sourceFolder": "Assessment",
+      "type": "pptx"
+    },
+    {
+      "served": "pr-2016-subject-comments.docx",
+      "original": "PR 2016 subject comments.docx",
+      "sourceFolder": "Assessment",
+      "type": "docx"
+    },
+    {
+      "served": "stakeholder-survey.png",
+      "original": "Rhonda Stakeholder Survey.png",
+      "sourceFolder": "Library",
+      "type": "png"
+    },
+    {
+      "served": "making-room-for-the-new.pdf",
+      "original": "Rhonda - Making Room For the New.pdf",
+      "sourceFolder": "Library",
+      "type": "pdf"
+    },
+    {
+      "served": "library-slide1.jpg",
+      "original": "Slide1.jpg",
+      "sourceFolder": "Library",
+      "type": "jpg"
+    },
+    {
+      "served": "reading-display-digital-magazine.pdf",
+      "original": "Rhonda Tidgwell Reading Display Digital Magazine.pdf",
+      "sourceFolder": "Library",
+      "type": "pdf"
+    },
+    {
+      "served": "digital-citizenship-media-balance.pdf",
+      "original": "Rhonda Tidgwell Digital Citizenship Media Balance.pdf",
+      "sourceFolder": "Library",
+      "type": "pdf"
+    },
+    {
+      "served": "diverse-collection-selections.png",
+      "original": "Rhonda Selections for a Diverse Collection.png",
+      "sourceFolder": "Library",
+      "type": "png"
+    },
+    {
+      "served": "digital-citizenship.pdf",
+      "original": "Rhonda Tidgwell DIGITAL CITIZENSHIP.pdf",
+      "sourceFolder": "Library",
+      "type": "pdf"
+    },
+    {
+      "served": "virtual-library-1-2-3.png",
+      "original": "Rhonda VIRTUAL LIBRARY 1-2-3.png",
+      "sourceFolder": "Library",
+      "type": "png"
+    },
+    {
+      "served": "library-action-plan.pdf",
+      "original": "Rhonda Tidgwell Action Plan.pdf",
+      "sourceFolder": "Library",
+      "type": "pdf"
+    },
+    {
+      "served": "evaluating-web-resources-checklist.pdf",
+      "original": "Rhonda Tidgwell Evaluating Web Resources Checklist.pdf",
+      "sourceFolder": "Library",
+      "type": "pdf"
+    },
+    {
+      "served": "forest-of-reading-pitch.pdf",
+      "original": "RHONDA_TIDGWELL_FOREST_OF_READING_PITCH.pdf",
+      "sourceFolder": "Library",
+      "type": "pdf"
+    },
+    {
+      "served": "makerspace-1.png",
+      "original": "Rhonda Makerspace 1.png",
+      "sourceFolder": "Library",
+      "type": "png"
+    },
+    {
+      "served": "community-reading-event.pdf",
+      "original": "Rhonda_Tidgwell_Community_Reading_Event.pdf",
+      "sourceFolder": "Library",
+      "type": "pdf"
+    },
+    {
+      "served": "makerspace-2.png",
+      "original": "Rhonda Makerspace 2.png",
+      "sourceFolder": "Library",
+      "type": "png"
+    },
+    {
+      "served": "inquiry-lesson-plan-2019.pdf",
+      "original": "Rhonda Inquiry Lesson Plan 2019.pdf",
+      "sourceFolder": "Lesson Planning",
+      "type": "pdf"
+    },
+    {
+      "served": "inquiry-lesson-plan-2019-part1.pdf",
+      "original": "Rhonda Inquiry Lesson Plan 2019_Part1.pdf",
+      "sourceFolder": "Lesson Planning",
+      "type": "pdf"
+    },
+    {
+      "served": "inquiry-lesson-plan-2019-part2.pdf",
+      "original": "Rhonda Inquiry Lesson Plan 2019_Part2.pdf",
+      "sourceFolder": "Lesson Planning",
+      "type": "pdf"
+    },
+    {
+      "served": "recreational-reading-long-range-plan.pdf",
+      "original": "Rhonda Tidgwell RECREATIONAL READING LONGRANGE PLAN.pdf",
+      "sourceFolder": "Lesson Planning",
+      "type": "pdf"
+    }
+  ],
+  "excluded": [
+    {
+      "original": "TPA Portfolio (Updated 2017).pptx",
+      "reason": "257MB — archival reference only, never served from /public/",
+      "sourceFolder": "(root)"
+    }
+  ]
+}
