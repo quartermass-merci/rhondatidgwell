@@ -2,6 +2,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "./container";
 
+// After the audit and critique, the card-rectangle treatment was the one
+// remaining framed surface on the site. Strip the highlight fill and let it
+// sit on --paper with just a single top rule — matches the rest of the
+// editorial language.
 export function CtaStrip({
   headline,
   body,
@@ -14,13 +18,15 @@ export function CtaStrip({
   ctaHref: string;
 }) {
   return (
-    <section className="mt-24 border-t border-b border-rule bg-highlight/60">
-      <Container className="py-16 md:py-20 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <section className="mt-8 border-t border-ink/90">
+      <Container className="py-16 md:py-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
         <div className="max-w-2xl">
-          <h2 className="font-display text-3xl md:text-4xl text-ink leading-tight">
+          <h2 className="font-display text-3xl md:text-[2.5rem] text-ink leading-[1.08]">
             {headline}
           </h2>
-          <p className="mt-3 text-ink/80 leading-relaxed">{body}</p>
+          <p className="mt-3 text-[color:var(--text-body)] leading-relaxed">
+            {body}
+          </p>
         </div>
         <Link
           href={ctaHref}

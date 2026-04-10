@@ -25,10 +25,11 @@ export function PullQuote({
       >
         <div className="md:grid md:grid-cols-12 md:gap-10">
           <blockquote className="md:col-span-10 relative font-display italic font-normal text-[2rem] sm:text-[2.5rem] md:text-[3.25rem] leading-[1.1] tracking-[-0.01em] text-ink">
-            {/* Hanging opening quote in the left gutter on md+ */}
+            {/* Hanging opening quote in the left gutter on md+.
+                Ornamental — uses marine, not action red. */}
             <span
               aria-hidden
-              className="hidden md:block absolute -left-8 top-[-0.05em] font-display not-italic text-[3.75rem] leading-none text-[color:var(--accent-40)]"
+              className="hidden md:block absolute -left-8 top-[-0.05em] font-display not-italic text-[3.75rem] leading-none text-[color:var(--accent-2-60)]"
             >
               &ldquo;
             </span>
@@ -48,7 +49,7 @@ export function PullQuote({
   return (
     <figure
       className={cn(
-        "my-10 pl-6 border-l-2 border-[color:var(--accent-70)]",
+        "my-10 pl-6 border-l-2 border-[color:var(--accent-2-60)]",
         className,
       )}
     >

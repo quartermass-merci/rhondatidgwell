@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container, Prose } from "@/components/container";
@@ -50,39 +51,57 @@ const ROOMS = [
 export default function Library() {
   return (
     <main id="main" className="flex-1">
-      {/* Full-bleed editorial header — oversized headline, no card, no hero shell */}
-      <section className="pt-16 md:pt-24 pb-14 md:pb-20 border-b border-rule">
+      {/* Number-as-headline opener (critique P3).
+          No eyebrow. No max-w-4xl prose block. A single display number
+          with an inline gloss, then the full-bleed photograph (P4). */}
+      <section className="pt-14 md:pt-20">
         <Container>
-          <div className="md:grid md:grid-cols-12 md:gap-10">
-            <div className="md:col-span-8">
-              <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted">
-                Section II — Library &amp; Learning Commons
+          <div className="md:grid md:grid-cols-12 md:gap-10 md:items-end">
+            <div className="md:col-span-5">
+              <p
+                className="font-display leading-[0.82] tracking-[-0.03em] text-ink"
+                style={{ fontSize: "clamp(6rem, 18vw, 14rem)" }}
+              >
+                21
               </p>
-              <h1 className="mt-6 h-display-xl font-display font-normal text-ink text-balance">
-                The library is the{" "}
-                <em className="font-normal text-[color:var(--accent)]">
-                  most democratic
-                </em>{" "}
-                room in the school.
-              </h1>
+              <p className="mt-4 text-sm uppercase tracking-[0.2em] text-muted">
+                Students per K–5 class, every period, every day
+              </p>
             </div>
-            <aside className="md:col-span-4 md:pt-6 mt-8 md:mt-0">
-              <p className="text-xs uppercase tracking-[0.18em] text-muted">
-                Posting
+            <div className="md:col-span-7 mt-10 md:mt-0">
+              <h1 className="h-display-lg font-display font-normal text-ink text-balance">
+                The library is the room where every one of them belongs.
+              </h1>
+              <p className="mt-5 text-base md:text-lg text-[color:var(--text-body)] max-w-xl leading-relaxed">
+                Teacher-Librarian &amp; ESL Teacher at Rivercrest Junior
+                School since 2021. K–5 library literacy, STEAM and coding,
+                small-group English language learning, and Special Ed
+                resource.
               </p>
-              <p className="mt-2 font-display text-lg text-ink leading-snug">
-                Teacher-Librarian &amp; ESL Teacher
-                <br />
-                Rivercrest Junior School
-              </p>
-              <p className="mt-1 text-sm text-muted">2021 – present</p>
-            </aside>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* Opening essay — a true editorial opener, not a hero+prose combo */}
-      <Container className="pt-16 pb-20">
+      {/* Full-bleed image — the library itself, not a card (critique P4) */}
+      <figure className="mt-14 md:mt-20 relative w-full aspect-[21/9] md:aspect-[21/8] bg-highlight overflow-hidden">
+        <Image
+          src="/images/library-hero.png"
+          alt="The Rivercrest Junior School learning commons and makerspace"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+      </figure>
+      <Container className="pt-4 pb-16">
+        <figcaption className="text-xs uppercase tracking-[0.18em] text-muted">
+          Rivercrest Junior School · Learning commons &amp; makerspace
+        </figcaption>
+      </Container>
+
+      {/* Opening essay — drop cap retained but color is now marine via P5 */}
+      <Container className="pb-20">
         <div className="md:grid md:grid-cols-12 md:gap-10">
           <div className="hidden md:block md:col-span-3">
             <p className="sticky top-24 text-xs uppercase tracking-[0.18em] text-muted">
@@ -92,15 +111,15 @@ export default function Library() {
           <Prose className="md:col-span-9 max-w-none md:max-w-[60ch]">
             <p className="dropcap">
               The job is simple to describe and impossible to finish: build a
-              reading culture, curate a collection that reflects every student,
-              teach K–5 STEAM and coding, run digital citizenship and research
-              instruction, and make the library the place where curiosity is
-              safest.
+              reading culture, curate a collection that reflects every
+              student, teach K–5 STEAM and coding, run digital citizenship
+              and research instruction, and make the library the place where
+              curiosity is safest.
             </p>
             <p>
               I came into the role with two Teacher-Librarian AQs earned
-              during the pandemic and a year of Grade 6 Virtual School in the
-              rearview mirror. That experience — teaching a full class
+              during the pandemic and a year of Grade 6 Virtual School in
+              the rearview mirror. That experience — teaching a full class
               entirely through a screen — is how I learned what a library
               actually is when you strip the room away. Everything I&apos;ve
               built at Rivercrest since 2021 has been in conversation with
@@ -110,7 +129,8 @@ export default function Library() {
         </div>
       </Container>
 
-      {/* Index — a numbered editorial ToC, not a card grid */}
+      {/* Index — numbered editorial ToC. Roman-numeral-style color moved
+          to --accent-2-60 so the red is reserved for the hover action. */}
       <Container className="pb-24">
         <p className="text-xs uppercase tracking-[0.22em] text-muted">
           In this section
@@ -122,7 +142,7 @@ export default function Library() {
                 href={r.href}
                 className="group grid grid-cols-12 gap-4 md:gap-8 items-baseline py-7 md:py-9 transition-colors hover:bg-highlight/50 -mx-4 px-4"
               >
-                <span className="col-span-2 md:col-span-1 font-display text-3xl md:text-4xl text-[color:var(--accent-70)] leading-none">
+                <span className="col-span-2 md:col-span-1 font-display text-3xl md:text-4xl text-[color:var(--accent-2-60)] leading-none">
                   {r.num}
                 </span>
                 <div className="col-span-10 md:col-span-9">

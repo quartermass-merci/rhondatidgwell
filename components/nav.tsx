@@ -16,17 +16,9 @@ const NAV_ITEMS = [
 ];
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Lock body scroll while the sheet is open
   useEffect(() => {
@@ -79,12 +71,10 @@ export function Nav() {
   return (
     <header
       className={cn(
-        // Audit M2 — no backdrop-blur. A 1px rule appears on scroll, nothing else.
-        "sticky top-0 z-40",
-        scrolled
-          ? "bg-paper border-b border-rule"
-          : "bg-paper/0 border-b border-transparent",
-        "transition-[background-color,border-color] duration-200",
+        // Always solid paper. The scroll-to-transparent state was causing a
+        // legibility bug (critique P1) and the transition added nothing
+        // editorial. Solid paper + rule is the right move here.
+        "sticky top-0 z-40 bg-paper border-b border-rule",
       )}
     >
       <nav

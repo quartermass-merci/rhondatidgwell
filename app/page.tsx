@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container, Prose } from "@/components/container";
-import { PullQuote } from "@/components/pull-quote";
 import { CtaStrip } from "@/components/cta-strip";
 
 export const metadata = {
@@ -12,17 +11,17 @@ export const metadata = {
 
 const FACTS = [
   {
-    meta: "CURRENT ROLE",
+    meta: "Role",
     headline: "Teacher-Librarian + ESL",
     sub: "Rivercrest Junior School · 2021–present",
   },
   {
-    meta: "EXPERIENCE",
-    headline: "Twenty-four years in TDSB",
+    meta: "Years",
+    headline: "Twenty-four in TDSB",
     sub: "K–5 Library · Grades 4–8 Classroom · Special Ed · ESL",
   },
   {
-    meta: "APPROACH",
+    meta: "Approach",
     headline: "Inquiry-driven, equity-forward",
     sub: "Because curious kids become citizens",
   },
@@ -122,20 +121,21 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* Proof — typographic stack, no boxes, rules between */}
+      {/* Proof — typographic stack, narrow meta margin (col-span-2),
+          content occupies the big 10-col well (minor fix). */}
       <Container className="pb-24">
         <div className="border-t-2 border-ink/90">
           <dl className="divide-y divide-[color:var(--rule)]">
             {FACTS.map((f) => (
               <div
                 key={f.meta}
-                className="grid grid-cols-12 gap-6 py-7 md:py-8 items-baseline"
+                className="grid grid-cols-12 gap-6 py-7 md:py-9 items-baseline"
               >
-                <dt className="col-span-12 md:col-span-3 text-[11px] font-medium uppercase tracking-[0.22em] text-muted">
+                <dt className="col-span-12 md:col-span-2 text-[11px] font-medium uppercase tracking-[0.24em] text-muted md:pt-3">
                   {f.meta}
                 </dt>
-                <dd className="col-span-12 md:col-span-9">
-                  <p className="font-display text-[1.75rem] md:text-[2.25rem] leading-[1.1] text-ink">
+                <dd className="col-span-12 md:col-span-10">
+                  <p className="font-display text-[1.75rem] md:text-[2.5rem] leading-[1.08] text-ink">
                     {f.headline}
                   </p>
                   <p className="mt-2 text-sm text-muted">{f.sub}</p>
@@ -146,17 +146,35 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* Hero pull-quote — now left-aligned with hanging quote */}
-      <Container className="pb-24">
-        <PullQuote
-          style="hero"
-          quote="Every student deserves a 'Ms. Tidgwell year.'"
-          attribution="Student nomination, World Teachers' Day Award"
-        />
-      </Container>
+      {/* Pull-quote — full-bleed --highlight band with asymmetric padding.
+          This is the asymmetric counterpoint below the hero (critique P2). */}
+      <section className="bg-highlight py-20 md:py-28">
+        <Container>
+          <div className="md:grid md:grid-cols-12 md:gap-8">
+            <figure className="md:col-span-10 md:col-start-2 relative">
+              <span
+                aria-hidden
+                className="absolute -left-4 md:-left-10 top-[-0.2em] font-display not-italic text-[5rem] md:text-[7rem] leading-none text-[color:var(--accent-2-60)]"
+              >
+                &ldquo;
+              </span>
+              <blockquote
+                className="font-display italic font-normal text-ink leading-[1.1] tracking-[-0.01em]"
+                style={{ fontSize: "clamp(2rem, 4.2vw + 0.5rem, 3.75rem)" }}
+              >
+                Every student deserves a &apos;Ms. Tidgwell year.&apos;
+              </blockquote>
+              <figcaption className="mt-8 text-xs uppercase tracking-[0.2em] text-muted">
+                — Student nomination, World Teachers&apos; Day Award
+              </figcaption>
+            </figure>
+          </div>
+        </Container>
+      </section>
 
-      {/* Table of contents — editorial ToC, not a card grid */}
-      <Container className="pb-28">
+      {/* Table of contents — editorial ToC, inset from the hero's left edge
+          via md:col-start-3 so it reads as a deliberate indent (P2). */}
+      <Container className="py-24 md:py-28">
         <div className="md:grid md:grid-cols-12 md:gap-10">
           <div className="md:col-span-4">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted">
@@ -167,7 +185,7 @@ export default function Home() {
               <br />
               twenty-four years,
               <br />
-              <em className="font-normal">every claim backed.</em>
+              every claim backed.
             </h2>
           </div>
           <ol className="md:col-span-8 mt-10 md:mt-2">
@@ -184,7 +202,7 @@ export default function Home() {
                   href={s.href}
                   className="group grid grid-cols-12 gap-4 py-7 md:py-8 items-baseline hover:bg-highlight/40 -mx-4 px-4 transition-colors"
                 >
-                  <span className="col-span-2 md:col-span-1 font-display italic text-[color:var(--accent-70)] text-lg">
+                  <span className="col-span-2 md:col-span-1 font-display italic text-[color:var(--accent-2-60)] text-lg">
                     {s.num}
                   </span>
                   <div className="col-span-10 md:col-span-9">

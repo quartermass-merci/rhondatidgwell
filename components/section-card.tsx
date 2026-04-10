@@ -32,7 +32,7 @@ export function SectionCard({
       <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
         {label}
       </p>
-      <h3 className="mt-3 font-display text-2xl md:text-[1.75rem] leading-tight text-ink group-hover:[text-decoration:underline] [text-decoration-thickness:1px] [text-underline-offset:6px] decoration-[var(--accent-40)]">
+      <h3 className="mt-3 font-display text-2xl md:text-[1.75rem] leading-tight text-ink group-hover:[text-decoration:underline] [text-decoration-thickness:1.5px] [text-underline-offset:6px] decoration-[var(--accent-70)]">
         {title}
       </h3>
       <p className="mt-3 text-[0.95rem] md:text-base leading-relaxed text-[color:var(--text-body)]">
