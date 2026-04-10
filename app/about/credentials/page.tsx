@@ -1,5 +1,5 @@
 import { Hero } from "@/components/hero";
-import { Container, Prose } from "@/components/container";
+import { Container } from "@/components/container";
 import { Tbd } from "@/components/tbd";
 
 export const metadata = {
@@ -51,11 +51,7 @@ export default function Credentials() {
         lede="OCT member in good standing, plus the AQs and PD that actually shaped the practice."
         size="lg"
       />
-      <Container className="pb-24 space-y-16">
-        <Prose>
-          <p>Credentials don't teach kids. But here's the paperwork for anyone who needs it.</p>
-        </Prose>
-
+      <Container className="pb-24 space-y-16 pt-16">
         <Block title="Degrees & Certification">
           <ul className="space-y-3">
             {DEGREES.map((d) => (

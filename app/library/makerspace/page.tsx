@@ -38,7 +38,7 @@ export default function Makerspace() {
                 alt={`Rhonda's makerspace at Rivercrest Junior School, image ${i + 1}`}
                 fill
                 sizes="(min-width: 768px) 45vw, 100vw"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           ))}

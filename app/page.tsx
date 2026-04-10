@@ -16,28 +16,28 @@ const SECTIONS = [
     href: "/classroom",
     title: "Classroom Practice",
     blurb:
-      "Inquiry-driven lesson planning and differentiation across grades four through eight.",
+      "How I plan and teach from Grade 4 through Grade 8 — lessons, inquiry work, and the daily choices that help me reach every kid in the room.",
   },
   {
     num: "II",
     href: "/library",
     title: "Library & Learning Commons",
     blurb:
-      "The Rivercrest library, the makerspace, digital citizenship, and the collection I've built since 2021.",
+      "The Rivercrest library is my other classroom. A look at the space, the makerspace, our digital citizenship work, and the collection I've been building since 2021.",
   },
   {
     num: "III",
     href: "/assessment",
     title: "Assessment & Feedback",
     blurb:
-      "How Growing Success becomes classroom practice — conferences, levelled exemplars, a comment bank, and feedback students can actually use.",
+      "What Growing Success looks like in the classroom — student conferences, levelled exemplars, my comment bank, and feedback kids can use to get better.",
   },
   {
     num: "IV",
     href: "/leadership",
     title: "Leadership & Community",
     blurb:
-      "Staff PD, mentorship, equity work, and the committees and PLCs that keep me learning.",
+      "The work that happens outside my own classroom: staff PD, mentoring new teachers, equity work, and the committees and learning communities that keep me growing.",
   },
 ];
 
@@ -59,24 +59,29 @@ export default function Home() {
               priority
             />
             <figcaption className="absolute left-0 bottom-0 right-0 px-4 py-3 bg-paper/90 text-[11px] uppercase tracking-[0.18em] text-muted">
-              Rivercrest Junior School · K–5
+              Rhonda Tidgwell
             </figcaption>
           </figure>
 
           {/* Bio column */}
           <div className="md:col-span-7 mt-8 md:mt-0 md:pt-2">
             <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-muted">
-              Rhonda Tidgwell{" "}
-              <span className="text-[color:var(--accent-2)] mx-1">§</span>{" "}
               Toronto
+              <span className="text-[color:var(--accent-2)] mx-2">§</span>
+              Since 2002
             </p>
-            <h1 className="mt-6 font-display font-normal text-ink leading-[1.02] tracking-[-0.02em] text-balance"
-                style={{ fontSize: "clamp(1.875rem, 2.6vw + 0.75rem, 3rem)" }}>
-              Teacher-Librarian &amp; ESL Teacher,{" "}
+            <h1
+              className="mt-5 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
+              style={{ fontSize: "clamp(3rem, 9vw + 0.5rem, 8rem)" }}
+            >
+              Rhonda{" "}
               <em className="font-normal text-[color:var(--accent-2)]">
-                Rivercrest Junior School.
+                Tidgwell.
               </em>
             </h1>
+            <p className="mt-6 font-display italic text-lg md:text-xl text-[color:var(--text-body)] leading-[1.3]">
+              Teacher-Librarian &amp; ESL Teacher, Rivercrest Junior School.
+            </p>
             <Prose className="mt-8">
               <p>
                 I&apos;m currently the Teacher-Librarian and Multi-Language
@@ -102,19 +107,13 @@ export default function Home() {
                 student I come across.
               </p>
             </Prose>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                href="/library"
-                className="inline-flex items-center rounded-sm bg-accent px-6 py-3.5 text-sm font-medium text-paper hover:bg-accent/90 transition-colors min-h-[44px]"
-              >
-                Enter the library
-                <ArrowRight size={16} className="ml-2" />
-              </Link>
+            <div className="mt-10">
               <Link
                 href="/about"
                 className="inline-flex items-center px-1 py-3.5 text-sm font-medium text-ink hover:text-accent transition-colors min-h-[44px] border-b border-ink hover:border-accent"
               >
                 Read my philosophy
+                <ArrowRight size={16} className="ml-2" />
               </Link>
             </div>
           </div>
@@ -199,31 +198,32 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Pull-quote — monumental, the glyph escapes the container entirely. */}
-      <section className="bg-highlight py-24 md:py-36 overflow-hidden">
+      {/* Pull-quote — one line, sized to fit viewport width. */}
+      <section className="bg-highlight py-20 md:py-28 overflow-hidden">
         <Container>
-          <div className="md:grid md:grid-cols-12 md:gap-8">
-            <figure className="md:col-span-11 md:col-start-2 relative">
+          <figure className="relative">
+            <blockquote
+              className="font-display italic font-normal text-ink leading-[1] tracking-[-0.03em] whitespace-nowrap"
+              style={{ fontSize: "clamp(1.5rem, 5.2vw, 5.5rem)" }}
+            >
               <span
                 aria-hidden
-                className="absolute -left-8 md:-left-24 -top-16 md:-top-28 font-display not-italic leading-[0.7] text-[color:var(--accent-2)] select-none pointer-events-none"
-                style={{ fontSize: "clamp(10rem, 22vw, 22rem)" }}
+                className="text-[color:var(--accent-2)] mr-1"
               >
                 &ldquo;
               </span>
-              <blockquote
-                className="relative font-display italic font-normal text-ink leading-[0.98] tracking-[-0.025em]"
-                style={{ fontSize: "clamp(2.5rem, 7vw + 0.5rem, 6.5rem)" }}
+              Every student deserves a &lsquo;Ms.&nbsp;Tidgwell&nbsp;year.&rsquo;
+              <span
+                aria-hidden
+                className="text-[color:var(--accent-2)] ml-1"
               >
-                Every student deserves a
-                <br />
-                &lsquo;Ms.&nbsp;Tidgwell&nbsp;year.&rsquo;
-              </blockquote>
-              <figcaption className="mt-10 text-xs uppercase tracking-[0.22em] text-muted">
-                — Student nomination, World Teachers&apos; Day Award
-              </figcaption>
-            </figure>
-          </div>
+                &rdquo;
+              </span>
+            </blockquote>
+            <figcaption className="mt-8 text-xs uppercase tracking-[0.22em] text-muted">
+              — Student nomination, World Teachers&apos; Day Award
+            </figcaption>
+          </figure>
         </Container>
       </section>
 
@@ -234,13 +234,10 @@ export default function Home() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted">
               Table of contents
             </p>
-            <h2 className="mt-6 h-display-lg font-display text-ink">
-              Four rooms.
-              <br />
-              Twenty-four years.
-              <br />
+            <h2 className="mt-6 h-display-lg font-display text-ink text-balance">
+              The four cornerstones of my{" "}
               <em className="font-normal text-[color:var(--accent-2)]">
-                Every claim backed.
+                teaching career.
               </em>
             </h2>
           </div>
@@ -283,8 +280,8 @@ export default function Home() {
       </Container>
 
       <CtaStrip
-        headline="Hiring for a Teacher-Librarian role?"
-        body="Let's talk. I'm available for a September 2026 start."
+        headline="Looking forward to September 2026."
+        body="I'd love to hear what's happening in your building. Classroom teacher, teacher-librarian, or something else — I'm open to the right fit."
         ctaLabel="Get in touch"
         ctaHref="/contact"
       />

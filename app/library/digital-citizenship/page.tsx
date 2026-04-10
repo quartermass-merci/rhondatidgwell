@@ -17,15 +17,15 @@ export default function DigitalCitizenship() {
       <Container className="pb-20">
         <Prose>
           <p>
-            Digital citizenship at the junior level gets taught badly most of
-            the time — as a set of warnings and a worksheet about
-            cyberbullying. That's not literacy. That's compliance theatre.
+            Digital citizenship at the junior level usually gets taught badly,
+            often a stack of vague warnings and a cyberbullying worksheet.
+            That doesn&apos;t really help anyone.
           </p>
           <p>
-            My approach is different. I teach source evaluation and media
-            balance. Underneath both is the habit of asking who made this and
-            why. The Evaluating Web Resources Checklist below is the running
-            tool we use across research units from grade 4 up.
+            I source evaluation and media balance, with the same question
+            running underneath both: who made this, and why? The Evaluating
+            Web Resources Checklist below is the running tool we use across
+            research units from Grade 4 up.
           </p>
         </Prose>
         <div className="mt-12 grid gap-5 md:grid-cols-3">

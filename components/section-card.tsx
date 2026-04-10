@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 
 export type SectionCardProps = {
   href: string;
-  label: string;
+  label?: string;
   title: string;
   blurb: string;
   className?: string;
@@ -29,10 +29,17 @@ export function SectionCard({
         className,
       )}
     >
-      <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
-        {label}
-      </p>
-      <h3 className="mt-3 font-display text-2xl md:text-[1.75rem] leading-tight text-ink group-hover:[text-decoration:underline] [text-decoration-thickness:1.5px] [text-underline-offset:6px] decoration-[var(--accent-70)]">
+      {label ? (
+        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
+          {label}
+        </p>
+      ) : null}
+      <h3
+        className={cn(
+          "font-display text-2xl md:text-[1.75rem] leading-tight text-ink group-hover:[text-decoration:underline] [text-decoration-thickness:1.5px] [text-underline-offset:6px] decoration-[var(--accent-70)]",
+          label ? "mt-3" : "",
+        )}
+      >
         {title}
       </h3>
       <p className="mt-3 text-[0.95rem] md:text-base leading-relaxed text-[color:var(--text-body)]">

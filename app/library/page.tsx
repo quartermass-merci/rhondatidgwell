@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container, Prose } from "@/components/container";
@@ -51,66 +50,31 @@ const ROOMS = [
 export default function Library() {
   return (
     <main id="main" className="flex-1">
-      {/* Number-as-headline opener — the "21" is now monumental and
-          breaks out of the container. The headline wraps around it. */}
-      <section className="pt-12 md:pt-16 overflow-hidden">
+      {/* Monumental hero line — the library IS the headline. */}
+      <section className="pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden">
         <Container>
-          <div className="md:grid md:grid-cols-12 md:gap-6 md:items-end">
-            <div className="md:col-span-6 md:-ml-[2vw] relative">
-              <p
-                className="h-numeral text-ink select-none"
-                style={{ fontSize: "clamp(8rem, 26vw, 24rem)" }}
-                aria-hidden
-              >
-                21
-              </p>
-              <p className="sr-only">
-                Twenty-one students per K–5 class, every period, every day.
-              </p>
-              <p className="mt-4 text-xs md:text-sm uppercase tracking-[0.22em] text-muted max-w-xs">
-                Students per K–5 class,
-                <br />
-                every period, every day
-              </p>
-            </div>
-            <div className="md:col-span-6 mt-10 md:mt-0 md:pb-8">
-              <h1 className="h-display-xl font-display font-normal text-ink text-balance">
-                The library is the room where{" "}
-                <em className="font-normal text-[color:var(--accent-2)]">
-                  every one
-                </em>{" "}
-                of them belongs.
-              </h1>
-              <p className="mt-6 text-base md:text-lg text-[color:var(--text-body)] max-w-xl leading-relaxed">
-                Teacher-Librarian &amp; ESL Teacher at Rivercrest Junior
-                School since 2021. K–5 library literacy, STEAM and coding,
-                small-group English language learning, and Special Ed
-                resource.
-              </p>
-            </div>
-          </div>
+          <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted">
+            Library &amp; Learning Commons
+          </p>
+          <h1
+            className="mt-6 font-display font-normal text-ink leading-[0.9] tracking-[-0.035em] text-balance"
+            style={{ fontSize: "clamp(2.75rem, 8vw + 0.5rem, 8rem)" }}
+          >
+            The library is the room where{" "}
+            <em className="font-normal text-[color:var(--accent-2)]">
+              every student belongs.
+            </em>
+          </h1>
+          <p className="mt-8 max-w-2xl text-base md:text-lg text-[color:var(--text-body)] leading-relaxed">
+            Teacher-Librarian &amp; ESL Teacher at Rivercrest Junior School
+            since 2021. K–5 library literacy, STEAM and coding, small-group
+            English language learning, and Special Ed resource.
+          </p>
         </Container>
       </section>
 
-      {/* Full-bleed image — wider aspect, the room takes the full viewport */}
-      <figure className="mt-16 md:mt-24 relative w-full aspect-[16/10] md:aspect-[21/7] bg-highlight overflow-hidden">
-        <Image
-          src="/images/library-hero.jpg"
-          alt="The Rivercrest Junior School learning commons and makerspace"
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-      </figure>
-      <Container className="pt-4 pb-16">
-        <figcaption className="text-xs uppercase tracking-[0.18em] text-muted">
-          Rivercrest Junior School · Learning commons &amp; makerspace
-        </figcaption>
-      </Container>
-
-      {/* Opening essay — drop cap retained but color is now marine via P5 */}
-      <Container className="pb-20">
+      {/* Opening essay — drop cap retained, marine accent via P5 */}
+      <Container className="pb-20 border-t border-rule pt-16 md:pt-20">
         <div className="md:grid md:grid-cols-12 md:gap-10">
           <div className="hidden md:block md:col-span-3">
             <p className="sticky top-24 text-xs uppercase tracking-[0.18em] text-muted">
@@ -119,20 +83,19 @@ export default function Library() {
           </div>
           <Prose className="md:col-span-9 max-w-none md:max-w-[60ch]">
             <p className="dropcap">
-              The job is simple to describe and impossible to finish: build a
-              reading culture, curate a collection that reflects every
-              student, teach K–5 STEAM and coding, run digital citizenship
-              and research instruction, and make the library the place where
-              curiosity is safest.
+              Simple to describe, impossible to finish: build a reading
+              culture, curate a collection that reflects every student, teach
+              K–5 STEAM and coding, run digital citizenship and research
+              instruction, and make the library the place where curiosity
+              feels safest.
             </p>
             <p>
               I came into the role with two Teacher-Librarian AQs earned
-              during the pandemic and a year of Grade 6 Virtual School in
-              the rearview mirror. That experience — teaching a full class
-              entirely through a screen — is how I learned what a library
-              actually is when you strip the room away. Everything I&apos;ve
-              built at Rivercrest since 2021 has been in conversation with
-              what that year made plain.
+              during the pandemic and a year of Grade 6 Virtual School behind
+              me. Teaching a full class entirely through a screen is how I
+              learned what a library actually is when you strip the room
+              away. Everything I&apos;ve built at Rivercrest since 2021 has
+              been a response to what that year made clear.
             </p>
           </Prose>
         </div>
