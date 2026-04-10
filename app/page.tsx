@@ -61,30 +61,65 @@ const SECTIONS = [
 export default function Home() {
   return (
     <main id="main" className="flex-1">
-      {/* Hero — asymmetric 7/5 split, fluid clamp headline */}
-      <Container className="pt-16 md:pt-24 pb-20 md:pb-28">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-start">
-          <div className="md:col-span-7">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted">
-              Rhonda Tidgwell · Toronto
+      {/* Hero — monumental display escapes the grid. The headline is the
+          whole event; the photo docks as an asymmetric inset breaking out
+          from the right. Eyebrow moves to marginalia in the left column. */}
+      <Container className="pt-12 md:pt-20 pb-24 md:pb-32">
+        <div className="md:grid md:grid-cols-12 md:gap-8">
+          <aside className="md:col-span-2 md:pt-4">
+            <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-muted">
+              Rhonda
+              <br />
+              Tidgwell
+              <br />
+              <span className="text-[color:var(--accent-2)]">§</span>{" "}
+              Toronto
             </p>
-            <h1 className="mt-6 h-display-xl font-display font-normal text-ink text-balance">
-              Twenty-four years in classrooms and libraries.
+          </aside>
+          <div className="md:col-span-10 mt-8 md:mt-0">
+            <h1 className="h-display-2xl font-display font-normal text-ink text-balance">
+              Twenty-four{" "}
+              <em className="font-normal text-[color:var(--accent-2)]">
+                years
+              </em>
+              <br />
+              in classrooms
+              <br />
+              &amp; libraries.
             </h1>
-            <p className="mt-7 font-display italic text-xl md:text-2xl text-ink/80 max-w-xl">
-              Teacher-Librarian and ESL Teacher, Rivercrest Junior School.
+          </div>
+        </div>
+
+        {/* Photo docks below the headline, breaking out via negative margin
+            on md+ so it overlaps the bottom of the display mass. */}
+        <div className="mt-14 md:mt-20 md:grid md:grid-cols-12 md:gap-8 items-start">
+          <figure className="md:col-span-5 md:col-start-7 md:-mt-40 relative aspect-[4/5] overflow-hidden bg-highlight">
+            <Image
+              src="/images/rhonda.jpg"
+              alt="Rhonda Tidgwell, Teacher-Librarian at Rivercrest Junior School"
+              fill
+              sizes="(min-width: 768px) 40vw, 100vw"
+              className="object-cover"
+              priority
+            />
+          </figure>
+          <div className="md:col-span-5 md:col-start-1 md:row-start-1 mt-8 md:mt-0 md:pt-4">
+            <p className="font-display italic text-2xl md:text-[2rem] leading-[1.15] text-ink/90 max-w-md">
+              Teacher-Librarian &amp; ESL Teacher,
+              <br />
+              Rivercrest Junior School.
             </p>
             <Prose className="mt-8">
               <p>
-                I&apos;m the Teacher-Librarian and Multi-Language Learning (ESL)
-                Teacher at Rivercrest Junior School — K–5 library literacy,
-                STEAM and coding, small-group English language learning, and
-                Special Ed resource. I&apos;ve been in TDSB classrooms since
-                2002.
+                I&apos;m the Teacher-Librarian and Multi-Language Learning
+                (ESL) Teacher at Rivercrest Junior School — K–5 library
+                literacy, STEAM and coding, small-group English language
+                learning, and Special Ed resource. I&apos;ve been in TDSB
+                classrooms since 2002.
               </p>
               <p>
-                This site is my portfolio. The teaching, the library work, the
-                student artifacts, and the thinking behind all of it.
+                This site is my portfolio. The teaching, the library work,
+                the student artifacts, and the thinking behind all of it.
               </p>
             </Prose>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -102,69 +137,67 @@ export default function Home() {
                 Read my philosophy
               </Link>
             </div>
-          </div>
-          <div className="md:col-span-5 md:pt-4">
-            <figure className="relative aspect-[4/5] overflow-hidden bg-highlight">
-              <Image
-                src="/images/rhonda.jpg"
-                alt="Rhonda Tidgwell, Teacher-Librarian at Rivercrest Junior School"
-                fill
-                sizes="(min-width: 768px) 40vw, 100vw"
-                className="object-cover"
-                priority
-              />
-            </figure>
-            <figcaption className="mt-4 text-xs uppercase tracking-[0.16em] text-muted">
+            <p className="mt-6 text-[11px] uppercase tracking-[0.18em] text-muted">
               Rivercrest Junior School · K–5
-            </figcaption>
+            </p>
           </div>
         </div>
       </Container>
 
-      {/* Proof — typographic stack, narrow meta margin (col-span-2),
-          content occupies the big 10-col well (minor fix). */}
-      <Container className="pb-24">
-        <div className="border-t-2 border-ink/90">
-          <dl className="divide-y divide-[color:var(--rule)]">
-            {FACTS.map((f) => (
+      {/* Proof — reversed marine panel, monumental typographic stack.
+          Full-bleed so it reads as a band, not a card. */}
+      <section className="reversed py-20 md:py-28">
+        <Container>
+          <p className="text-[11px] font-medium uppercase tracking-[0.28em] rev-muted">
+            On the record
+          </p>
+          <dl className="mt-10 border-t-[3px] border-paper/60 divide-y divide-paper/20">
+            {FACTS.map((f, i) => (
               <div
                 key={f.meta}
-                className="grid grid-cols-12 gap-6 py-7 md:py-9 items-baseline"
+                className="grid grid-cols-12 gap-6 py-10 md:py-14 items-baseline"
               >
-                <dt className="col-span-12 md:col-span-2 text-[11px] font-medium uppercase tracking-[0.24em] text-muted md:pt-3">
-                  {f.meta}
+                <dt className="col-span-12 md:col-span-1 font-display italic text-lg md:text-xl rev-muted md:pt-4">
+                  {String(i + 1).padStart(2, "0")}
                 </dt>
-                <dd className="col-span-12 md:col-span-10">
-                  <p className="font-display text-[1.75rem] md:text-[2.5rem] leading-[1.08] text-ink">
+                <dd className="col-span-12 md:col-span-8">
+                  <p className="font-display text-[2.25rem] md:text-[3.75rem] leading-[0.98] tracking-[-0.025em] text-paper">
                     {f.headline}
                   </p>
-                  <p className="mt-2 text-sm text-muted">{f.sub}</p>
+                  <p className="mt-4 text-sm rev-muted">{f.sub}</p>
+                </dd>
+                <dd className="hidden md:block md:col-span-3 text-right">
+                  <p className="text-[11px] uppercase tracking-[0.24em] rev-muted">
+                    {f.meta}
+                  </p>
                 </dd>
               </div>
             ))}
           </dl>
-        </div>
-      </Container>
+        </Container>
+      </section>
 
-      {/* Pull-quote — full-bleed --highlight band with asymmetric padding.
-          This is the asymmetric counterpoint below the hero (critique P2). */}
-      <section className="bg-highlight py-20 md:py-28">
+      {/* Pull-quote — monumental, the glyph escapes the container entirely. */}
+      <section className="bg-highlight py-24 md:py-36 overflow-hidden">
         <Container>
           <div className="md:grid md:grid-cols-12 md:gap-8">
-            <figure className="md:col-span-10 md:col-start-2 relative">
+            <figure className="md:col-span-11 md:col-start-2 relative">
               <span
                 aria-hidden
-                className="absolute -left-4 md:-left-10 top-[-0.2em] font-display not-italic text-[5rem] md:text-[7rem] leading-none text-[color:var(--accent-2-60)]"
+                className="absolute -left-8 md:-left-24 -top-16 md:-top-28 font-display not-italic leading-[0.7] text-[color:var(--accent-2)] select-none pointer-events-none"
+                style={{ fontSize: "clamp(10rem, 22vw, 22rem)" }}
               >
                 &ldquo;
               </span>
               <blockquote
-                className="font-display italic font-normal text-ink leading-[1.1] tracking-[-0.01em]"
-                style={{ fontSize: "clamp(2rem, 4.2vw + 0.5rem, 3.75rem)" }}
+                className="relative font-display italic font-normal text-ink leading-[0.98] tracking-[-0.025em]"
+                style={{ fontSize: "clamp(2.5rem, 7vw + 0.5rem, 6.5rem)" }}
               >
-                Every student deserves a &apos;Ms. Tidgwell year.&apos;
+                Every student deserves a
+                <br />
+                &lsquo;Ms.&nbsp;Tidgwell&nbsp;year.&rsquo;
               </blockquote>
-              <figcaption className="mt-8 text-xs uppercase tracking-[0.2em] text-muted">
+              <figcaption className="mt-10 text-xs uppercase tracking-[0.22em] text-muted">
                 — Student nomination, World Teachers&apos; Day Award
               </figcaption>
             </figure>
@@ -172,23 +205,24 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Table of contents — editorial ToC, inset from the hero's left edge
-          via md:col-start-3 so it reads as a deliberate indent (P2). */}
-      <Container className="py-24 md:py-28">
+      {/* Table of contents — editorial ToC, headline pushed large */}
+      <Container className="py-24 md:py-32">
         <div className="md:grid md:grid-cols-12 md:gap-10">
-          <div className="md:col-span-4">
+          <div className="md:col-span-5">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted">
               Table of contents
             </p>
-            <h2 className="mt-4 h-display-md font-display text-ink">
-              Four rooms,
+            <h2 className="mt-6 h-display-lg font-display text-ink">
+              Four rooms.
               <br />
-              twenty-four years,
+              Twenty-four years.
               <br />
-              every claim backed.
+              <em className="font-normal text-[color:var(--accent-2)]">
+                Every claim backed.
+              </em>
             </h2>
           </div>
-          <ol className="md:col-span-8 mt-10 md:mt-2">
+          <ol className="md:col-span-7 mt-10 md:mt-2">
             {SECTIONS.map((s, i) => (
               <li
                 key={s.href}
@@ -200,13 +234,13 @@ export default function Home() {
               >
                 <Link
                   href={s.href}
-                  className="group grid grid-cols-12 gap-4 py-7 md:py-8 items-baseline hover:bg-highlight/40 -mx-4 px-4 transition-colors"
+                  className="group grid grid-cols-12 gap-4 py-8 md:py-12 items-baseline hover:bg-highlight/40 -mx-4 px-4 transition-colors"
                 >
-                  <span className="col-span-2 md:col-span-1 font-display italic text-[color:var(--accent-2-60)] text-lg">
+                  <span className="col-span-2 md:col-span-2 font-display italic text-[color:var(--accent-2)] text-3xl md:text-[3rem] leading-none">
                     {s.num}
                   </span>
-                  <div className="col-span-10 md:col-span-9">
-                    <h3 className="font-display text-2xl md:text-[1.75rem] text-ink leading-tight group-hover:text-accent transition-colors">
+                  <div className="col-span-10 md:col-span-8">
+                    <h3 className="font-display text-[1.75rem] md:text-[2.5rem] text-ink leading-[1.02] group-hover:text-accent transition-colors tracking-[-0.015em]">
                       {s.title}
                     </h3>
                     <p className="mt-2 text-[0.95rem] leading-relaxed text-[color:var(--text-body)] max-w-2xl">

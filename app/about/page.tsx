@@ -11,26 +11,31 @@ export const metadata = {
 export default function Philosophy() {
   return (
     <main id="main" className="flex-1">
-      {/* Quote-as-headline opener (critique P3).
-          No eyebrow. The pull-quote IS the H1 — treated visually as
-          a full-bleed editorial statement, with attribution as
-          marginalia in the right column. */}
-      <section className="pt-20 md:pt-32 pb-16 md:pb-24">
+      {/* Quote-as-headline opener — monumental. Glyph escapes container. */}
+      <section className="pt-20 md:pt-32 pb-20 md:pb-28 overflow-hidden">
         <Container>
           <div className="md:grid md:grid-cols-12 md:gap-10">
-            <div className="md:col-span-10 md:col-start-1 relative">
+            <div className="md:col-span-12 relative">
               <span
                 aria-hidden
-                className="absolute -left-2 md:-left-6 -top-8 md:-top-12 font-display not-italic text-[5rem] md:text-[7rem] leading-none text-[color:var(--accent-2-60)]"
+                className="absolute -left-4 md:-left-20 -top-20 md:-top-36 font-display not-italic leading-[0.7] text-[color:var(--accent-2)] select-none pointer-events-none"
+                style={{ fontSize: "clamp(12rem, 26vw, 26rem)" }}
               >
                 &ldquo;
               </span>
-              <h1 className="font-display italic font-normal text-ink text-balance leading-[1.08] tracking-[-0.015em]"
-                  style={{ fontSize: "clamp(2.25rem, 5vw + 0.5rem, 4.5rem)" }}>
-                When a flower doesn&apos;t bloom, you fix the environment in
-                which it grows. Not the flower.
+              <h1 className="relative font-display italic font-normal text-ink text-balance leading-[0.96] tracking-[-0.028em]"
+                  style={{ fontSize: "clamp(2.5rem, 7vw + 0.5rem, 7rem)" }}>
+                When a flower doesn&apos;t bloom,
+                <br />
+                you fix the{" "}
+                <em className="not-italic text-[color:var(--accent-2)]">
+                  environment
+                </em>{" "}
+                in which it grows.
+                <br />
+                <span className="text-outline">Not the flower.</span>
               </h1>
-              <p className="mt-8 text-xs uppercase tracking-[0.22em] text-muted">
+              <p className="mt-10 text-xs uppercase tracking-[0.22em] text-muted">
                 — Alexander Den Heijer · the sentence I keep coming back to
               </p>
             </div>
@@ -83,12 +88,14 @@ export default function Philosophy() {
         </div>
       </Container>
 
-      {/* Identity rule — left-aligned within each column now
-          (minor: was centered). Three columns, hairline dividers,
-          display word + supporting copy. */}
-      <section className="border-y border-ink/90 py-14 md:py-20">
+      {/* Identity rule — now a stacked editorial manifesto. Each word is
+          monumental and owns its own row. */}
+      <section className="border-t-[3px] border-ink py-16 md:py-24">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0 md:divide-x divide-[color:var(--rule)]">
+          <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted">
+            What I bring
+          </p>
+          <dl className="mt-10 border-t border-rule">
             {[
               {
                 word: "Teamwork",
@@ -105,19 +112,27 @@ export default function Philosophy() {
             ].map((item, i) => (
               <div
                 key={item.word}
-                className={`md:px-8 ${i === 0 ? "md:pl-0" : ""} ${
-                  i === 2 ? "md:pr-0" : ""
-                }`}
+                className="grid grid-cols-12 gap-4 md:gap-8 py-10 md:py-14 border-b border-rule items-baseline"
               >
-                <p className="font-display text-3xl md:text-[2.25rem] uppercase tracking-[0.18em] text-ink leading-tight">
-                  {item.word}
-                </p>
-                <p className="mt-3 text-sm text-muted max-w-[24ch]">
-                  {item.sub}
-                </p>
+                <dt className="col-span-2 md:col-span-1 font-display italic text-lg md:text-xl text-[color:var(--accent-2)]">
+                  {String(i + 1).padStart(2, "0")}
+                </dt>
+                <dd className="col-span-10 md:col-span-11">
+                  <p className="font-display text-ink leading-[0.92] tracking-[-0.035em]"
+                     style={{ fontSize: "clamp(2.5rem, 8vw + 0.5rem, 7rem)" }}>
+                    {i === 1 ? (
+                      <em className="not-italic">{item.word}.</em>
+                    ) : (
+                      <>{item.word}.</>
+                    )}
+                  </p>
+                  <p className="mt-5 font-display italic text-xl md:text-2xl text-muted max-w-[32ch]">
+                    {item.sub}
+                  </p>
+                </dd>
               </div>
             ))}
-          </div>
+          </dl>
         </Container>
       </section>
 

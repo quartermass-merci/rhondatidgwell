@@ -67,23 +67,44 @@ body {
 /* Display type defaults */
 h1, h2, h3 {
   font-family: var(--font-fraunces), Georgia, serif;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
   font-optical-sizing: auto;
 }
 
-/* Fluid display sizes (audit L2) — used by hero/page headings */
+/* Fluid display sizes — experimental pass, pushed hard.
+   The hero display reaches 8rem (128px) on wide screens. The brief said
+   "literary magazine"; the instruction was go experimental. */
+.h-display-2xl {
+  font-size: clamp(3rem, 10vw + 0.5rem, 9rem);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+}
 .h-display-xl {
-  font-size: clamp(2.25rem, 4.5vw + 1rem, 4.25rem);
-  line-height: 1.04;
+  font-size: clamp(2.75rem, 6.5vw + 0.5rem, 6.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.028em;
 }
 .h-display-lg {
-  font-size: clamp(2rem, 3.5vw + 1rem, 3.5rem);
-  line-height: 1.06;
+  font-size: clamp(2.25rem, 5vw + 0.5rem, 5rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
 }
 .h-display-md {
-  font-size: clamp(1.75rem, 2.4vw + 0.75rem, 2.5rem);
-  line-height: 1.1;
+  font-size: clamp(1.875rem, 3vw + 0.75rem, 3rem);
+  line-height: 1.08;
+}
+
+/* Numeral display — monumental figures (the "21" at /library).
+   Fraunces's opsz axis wants these really big, and they hang
+   off the baseline as a graphic element. */
+.h-numeral {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: -0.05em;
+  font-optical-sizing: auto;
+  font-feature-settings: "lnum", "tnum" off;
 }
 
 /* Skip link (a11y) */
@@ -114,15 +135,36 @@ h1, h2, h3 {
   color: var(--paper);
 }
 
-/* Drop cap — ornamental, so it uses --accent-2 not --accent */
+/* Drop cap — ornamental, pushed larger for experimental pass */
 .dropcap::first-letter {
   font-family: var(--font-fraunces), Georgia, serif;
   font-weight: 500;
   float: left;
-  font-size: 5.5em;
-  line-height: 0.82;
-  padding: 0.1em 0.12em 0 0;
+  font-size: 6.5em;
+  line-height: 0.78;
+  padding: 0.08em 0.12em 0 0;
   color: var(--accent-2);
+  font-style: normal;
+}
+
+/* Reversed editorial panel — marine background, paper text, ornaments in cream.
+   Used for the "In this section" band and the home proof stack. */
+.reversed {
+  background: var(--accent-2);
+  color: var(--paper);
+}
+.reversed .rev-rule { border-color: color-mix(in oklab, var(--paper) 30%, transparent); }
+.reversed .rev-muted { color: color-mix(in oklab, var(--paper) 70%, transparent); }
+
+/* Text stroke outline — used sparingly on one display word.
+   Fraunces renders nicely as an outline at large sizes. */
+.text-outline {
+  -webkit-text-stroke: 1.5px var(--ink);
+  color: transparent;
+}
+.reversed .text-outline {
+  -webkit-text-stroke: 1.5px var(--paper);
+  color: transparent;
 }
 
 /* Audit M6 — honor prefers-reduced-motion globally */

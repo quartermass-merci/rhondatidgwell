@@ -51,28 +51,37 @@ const ROOMS = [
 export default function Library() {
   return (
     <main id="main" className="flex-1">
-      {/* Number-as-headline opener (critique P3).
-          No eyebrow. No max-w-4xl prose block. A single display number
-          with an inline gloss, then the full-bleed photograph (P4). */}
-      <section className="pt-14 md:pt-20">
+      {/* Number-as-headline opener — the "21" is now monumental and
+          breaks out of the container. The headline wraps around it. */}
+      <section className="pt-12 md:pt-16 overflow-hidden">
         <Container>
-          <div className="md:grid md:grid-cols-12 md:gap-10 md:items-end">
-            <div className="md:col-span-5">
+          <div className="md:grid md:grid-cols-12 md:gap-6 md:items-end">
+            <div className="md:col-span-6 md:-ml-[2vw] relative">
               <p
-                className="font-display leading-[0.82] tracking-[-0.03em] text-ink"
-                style={{ fontSize: "clamp(6rem, 18vw, 14rem)" }}
+                className="h-numeral text-ink select-none"
+                style={{ fontSize: "clamp(8rem, 26vw, 24rem)" }}
+                aria-hidden
               >
                 21
               </p>
-              <p className="mt-4 text-sm uppercase tracking-[0.2em] text-muted">
-                Students per K–5 class, every period, every day
+              <p className="sr-only">
+                Twenty-one students per K–5 class, every period, every day.
+              </p>
+              <p className="mt-4 text-xs md:text-sm uppercase tracking-[0.22em] text-muted max-w-xs">
+                Students per K–5 class,
+                <br />
+                every period, every day
               </p>
             </div>
-            <div className="md:col-span-7 mt-10 md:mt-0">
-              <h1 className="h-display-lg font-display font-normal text-ink text-balance">
-                The library is the room where every one of them belongs.
+            <div className="md:col-span-6 mt-10 md:mt-0 md:pb-8">
+              <h1 className="h-display-xl font-display font-normal text-ink text-balance">
+                The library is the room where{" "}
+                <em className="font-normal text-[color:var(--accent-2)]">
+                  every one
+                </em>{" "}
+                of them belongs.
               </h1>
-              <p className="mt-5 text-base md:text-lg text-[color:var(--text-body)] max-w-xl leading-relaxed">
+              <p className="mt-6 text-base md:text-lg text-[color:var(--text-body)] max-w-xl leading-relaxed">
                 Teacher-Librarian &amp; ESL Teacher at Rivercrest Junior
                 School since 2021. K–5 library literacy, STEAM and coding,
                 small-group English language learning, and Special Ed
@@ -83,8 +92,8 @@ export default function Library() {
         </Container>
       </section>
 
-      {/* Full-bleed image — the library itself, not a card (critique P4) */}
-      <figure className="mt-14 md:mt-20 relative w-full aspect-[21/9] md:aspect-[21/8] bg-highlight overflow-hidden">
+      {/* Full-bleed image — wider aspect, the room takes the full viewport */}
+      <figure className="mt-16 md:mt-24 relative w-full aspect-[16/10] md:aspect-[21/7] bg-highlight overflow-hidden">
         <Image
           src="/images/library-hero.jpg"
           alt="The Rivercrest Junior School learning commons and makerspace"
@@ -129,34 +138,48 @@ export default function Library() {
         </div>
       </Container>
 
-      {/* Index — numbered editorial ToC. Roman-numeral-style color moved
-          to --accent-2-60 so the red is reserved for the hover action. */}
-      <Container className="pb-24">
-        <p className="text-xs uppercase tracking-[0.22em] text-muted">
-          In this section
-        </p>
-        <ol className="mt-6 border-t border-ink/90">
+      {/* Reversed marine intro band — announces the index */}
+      <section className="reversed py-16 md:py-24">
+        <Container>
+          <div className="md:grid md:grid-cols-12 md:gap-8 md:items-end">
+            <p className="md:col-span-3 text-[11px] font-medium uppercase tracking-[0.28em] rev-muted">
+              In this section
+            </p>
+            <h2 className="md:col-span-9 mt-4 md:mt-0 font-display text-paper leading-[0.98] tracking-[-0.025em]"
+                style={{ fontSize: "clamp(2.25rem, 6vw + 0.5rem, 5.5rem)" }}>
+              Five rooms inside
+              <br />
+              <em className="font-normal">one library.</em>
+            </h2>
+          </div>
+        </Container>
+      </section>
+
+      {/* Index — numbered editorial ToC, numerals pushed monumental */}
+      <Container className="pb-24 pt-2">
+        <ol>
           {ROOMS.map((r) => (
-            <li key={r.href} className="border-b border-rule">
+            <li key={r.href} className="border-b border-ink/90 first:border-t border-t-0">
               <Link
                 href={r.href}
-                className="group grid grid-cols-12 gap-4 md:gap-8 items-baseline py-7 md:py-9 transition-colors hover:bg-highlight/50 -mx-4 px-4"
+                className="group grid grid-cols-12 gap-4 md:gap-6 items-baseline py-10 md:py-14 transition-colors hover:bg-highlight/60 -mx-4 px-4"
               >
-                <span className="col-span-2 md:col-span-1 font-display text-3xl md:text-4xl text-[color:var(--accent-2-60)] leading-none">
+                <span className="col-span-2 md:col-span-2 h-numeral text-[color:var(--accent-2)] leading-[0.8]"
+                      style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}>
                   {r.num}
                 </span>
-                <div className="col-span-10 md:col-span-9">
-                  <h2 className="font-display text-2xl md:text-[2rem] leading-[1.12] text-ink group-hover:text-accent transition-colors">
+                <div className="col-span-10 md:col-span-8">
+                  <h2 className="font-display text-[1.875rem] md:text-[2.75rem] leading-[0.98] text-ink group-hover:text-accent transition-colors tracking-[-0.025em]">
                     {r.title}
                   </h2>
-                  <p className="mt-3 text-[0.95rem] md:text-base leading-relaxed text-[color:var(--text-body)] max-w-2xl">
+                  <p className="mt-4 text-[0.95rem] md:text-base leading-relaxed text-[color:var(--text-body)] max-w-2xl">
                     {r.blurb}
                   </p>
                 </div>
-                <span className="hidden md:flex col-span-2 items-start justify-end pt-3 text-accent">
+                <span className="hidden md:flex col-span-2 items-start justify-end pt-4 text-accent">
                   <ArrowUpRight
-                    size={20}
-                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    size={28}
+                    className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
                   />
                 </span>
               </Link>
