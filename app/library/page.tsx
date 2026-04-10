@@ -86,7 +86,7 @@ export default function Library() {
       {/* Full-bleed image — the library itself, not a card (critique P4) */}
       <figure className="mt-14 md:mt-20 relative w-full aspect-[21/9] md:aspect-[21/8] bg-highlight overflow-hidden">
         <Image
-          src="/images/library-hero.png"
+          src="/images/library-hero.jpg"
           alt="The Rivercrest Junior School learning commons and makerspace"
           fill
           sizes="100vw"
