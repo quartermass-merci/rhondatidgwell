@@ -1,31 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Container, Prose } from "@/components/container";
 import { CtaStrip } from "@/components/cta-strip";
+import { STANDARDS } from "@/content/standards";
 
 export const metadata = {
   description:
     "Teacher-Librarian and ESL teacher at Rivercrest Junior School. Twenty-four years in TDSB classrooms and learning commons. Inquiry-driven, equity-forward, still in love with the work.",
 };
-
-const FACTS = [
-  {
-    meta: "Role",
-    headline: "Teacher-Librarian + ESL",
-    sub: "Rivercrest Junior School · 2021–present",
-  },
-  {
-    meta: "Years",
-    headline: "Twenty-four in TDSB",
-    sub: "K–5 Library · Grades 4–8 Classroom · Special Ed · ESL",
-  },
-  {
-    meta: "Approach",
-    headline: "Inquiry-driven, equity-forward",
-    sub: "Because curious kids become citizens",
-  },
-];
 
 const SECTIONS = [
   {
@@ -61,65 +44,62 @@ const SECTIONS = [
 export default function Home() {
   return (
     <main id="main" className="flex-1">
-      {/* Hero — monumental display escapes the grid. The headline is the
-          whole event; the photo docks as an asymmetric inset breaking out
-          from the right. Eyebrow moves to marginalia in the left column. */}
-      <Container className="pt-12 md:pt-20 pb-24 md:pb-32">
-        <div className="md:grid md:grid-cols-12 md:gap-8">
-          <aside className="md:col-span-2 md:pt-4">
-            <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-muted">
-              Rhonda
-              <br />
-              Tidgwell
-              <br />
-              <span className="text-[color:var(--accent-2)]">§</span>{" "}
-              Toronto
-            </p>
-          </aside>
-          <div className="md:col-span-10 mt-8 md:mt-0">
-            <h1 className="h-display-2xl font-display font-normal text-ink text-balance">
-              Twenty-four{" "}
-              <em className="font-normal text-[color:var(--accent-2)]">
-                years
-              </em>
-              <br />
-              in classrooms
-              <br />
-              &amp; libraries.
-            </h1>
-          </div>
-        </div>
-
-        {/* Photo docks below the headline, breaking out via negative margin
-            on md+ so it overlaps the bottom of the display mass. */}
-        <div className="mt-14 md:mt-20 md:grid md:grid-cols-12 md:gap-8 items-start">
-          <figure className="md:col-span-5 md:col-start-7 md:-mt-40 relative aspect-[4/5] overflow-hidden bg-highlight">
+      {/* Hero — photo-led, face-cropped. The big display headline is gone;
+          the bio carries the page now. */}
+      <Container className="pt-12 md:pt-20 pb-20 md:pb-28">
+        <div className="md:grid md:grid-cols-12 md:gap-10 items-start">
+          {/* Photo column — face-focused via object-position */}
+          <figure className="md:col-span-5 md:col-start-1 relative aspect-[4/5] overflow-hidden bg-highlight">
             <Image
               src="/images/rhonda.jpg"
               alt="Rhonda Tidgwell, Teacher-Librarian at Rivercrest Junior School"
               fill
               sizes="(min-width: 768px) 40vw, 100vw"
-              className="object-cover"
+              className="object-cover object-[center_22%]"
               priority
             />
+            <figcaption className="absolute left-0 bottom-0 right-0 px-4 py-3 bg-paper/90 text-[11px] uppercase tracking-[0.18em] text-muted">
+              Rivercrest Junior School · K–5
+            </figcaption>
           </figure>
-          <div className="md:col-span-5 md:col-start-1 md:row-start-1 mt-8 md:mt-0 md:pt-4">
-            <p className="font-display italic text-2xl md:text-[2rem] leading-[1.15] text-ink/90 max-w-md">
-              Teacher-Librarian &amp; ESL Teacher,
-              <br />
-              Rivercrest Junior School.
+
+          {/* Bio column */}
+          <div className="md:col-span-7 mt-8 md:mt-0 md:pt-2">
+            <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-muted">
+              Rhonda Tidgwell{" "}
+              <span className="text-[color:var(--accent-2)] mx-1">§</span>{" "}
+              Toronto
             </p>
+            <h1 className="mt-6 font-display font-normal text-ink leading-[1.02] tracking-[-0.02em] text-balance"
+                style={{ fontSize: "clamp(1.875rem, 2.6vw + 0.75rem, 3rem)" }}>
+              Teacher-Librarian &amp; ESL Teacher,{" "}
+              <em className="font-normal text-[color:var(--accent-2)]">
+                Rivercrest Junior School.
+              </em>
+            </h1>
             <Prose className="mt-8">
               <p>
-                I&apos;m the Teacher-Librarian and Multi-Language Learning
-                (ESL) Teacher at Rivercrest Junior School — K–5 library
-                literacy, STEAM and coding, small-group English language
-                learning, and Special Ed resource. I&apos;ve been in TDSB
-                classrooms since 2002.
+                I&apos;m currently the Teacher-Librarian and Multi-Language
+                Learning (ESL) Teacher at Rivercrest Junior School: K–5
+                library literacy, STEAM and coding, small-group English
+                language learning, and Special Ed resource. I&apos;ve been in
+                TDSB classrooms since 2002.
               </p>
               <p>
-                This site is my portfolio. The teaching, the library work,
-                the student artifacts, and the thinking behind all of it.
+                I am committed to moving beyond &lsquo;best practice&rsquo;
+                by modelling innovation and critical thinking skills in the
+                classroom.
+              </p>
+              <p>
+                My goal is to challenge and support each student to achieve
+                excellence in academic growth and global citizenship through
+                the delivery of differentiated, inquiry-based instruction to
+                the whole child.
+              </p>
+              <p>
+                This site is my portfolio that details my career as a
+                teacher, a teacher-librarian, and an advocate for every
+                student I come across.
               </p>
             </Prose>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -137,43 +117,88 @@ export default function Home() {
                 Read my philosophy
               </Link>
             </div>
-            <p className="mt-6 text-[11px] uppercase tracking-[0.18em] text-muted">
-              Rivercrest Junior School · K–5
-            </p>
           </div>
         </div>
       </Container>
 
-      {/* Proof — reversed marine panel, monumental typographic stack.
-          Full-bleed so it reads as a band, not a card. */}
-      <section className="reversed py-20 md:py-28">
+      {/* The Standards of Practice — bento grid, asymmetric.
+          Replaces the old "On the record" stack. Each card links to its
+          standard's detail page. */}
+      <section className="border-y-[3px] border-ink py-16 md:py-24">
         <Container>
-          <p className="text-[11px] font-medium uppercase tracking-[0.28em] rev-muted">
-            On the record
-          </p>
-          <dl className="mt-10 border-t-[3px] border-paper/60 divide-y divide-paper/20">
-            {FACTS.map((f, i) => (
-              <div
-                key={f.meta}
-                className="grid grid-cols-12 gap-6 py-10 md:py-14 items-baseline"
-              >
-                <dt className="col-span-12 md:col-span-1 font-display italic text-lg md:text-xl rev-muted md:pt-4">
-                  {String(i + 1).padStart(2, "0")}
-                </dt>
-                <dd className="col-span-12 md:col-span-8">
-                  <p className="font-display text-[2.25rem] md:text-[3.75rem] leading-[0.98] tracking-[-0.025em] text-paper">
-                    {f.headline}
-                  </p>
-                  <p className="mt-4 text-sm rev-muted">{f.sub}</p>
-                </dd>
-                <dd className="hidden md:block md:col-span-3 text-right">
-                  <p className="text-[11px] uppercase tracking-[0.24em] rev-muted">
-                    {f.meta}
-                  </p>
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="md:grid md:grid-cols-12 md:gap-10 md:items-end mb-12 md:mb-16">
+            <div className="md:col-span-7">
+              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted">
+                Ontario College of Teachers
+              </p>
+              <h2 className="mt-5 font-display text-ink leading-[0.94] tracking-[-0.03em]"
+                  style={{ fontSize: "clamp(2.5rem, 7.5vw + 0.5rem, 7rem)" }}>
+                The Standards
+                <br />
+                of{" "}
+                <em className="font-normal text-[color:var(--accent-2)]">
+                  Practice.
+                </em>
+              </h2>
+            </div>
+            <div className="md:col-span-5 mt-6 md:mt-0">
+              <p className="font-display italic text-xl md:text-2xl text-[color:var(--text-body)] leading-[1.25] max-w-md">
+                The five things every certified Ontario teacher is held to.
+                Here&apos;s how I read each one — and where to find the
+                receipts.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-6 grid-flow-row-dense border-t border-l border-ink/90">
+            {STANDARDS.map((s, i) => {
+              const span =
+                i === 0
+                  ? "md:col-span-3 md:row-span-2"
+                  : i === 1
+                    ? "md:col-span-3"
+                    : "md:col-span-2";
+
+              return (
+                <Link
+                  key={s.slug}
+                  href={`/standards-of-practice/${s.slug}`}
+                  className={`group relative flex flex-col justify-between border-r border-b border-ink/90 p-7 md:p-10 transition-colors hover:bg-highlight/60 ${span}`}
+                >
+                  <div className="flex items-start justify-between gap-6">
+                    <span className="font-display italic text-[color:var(--accent-2)] text-3xl md:text-[3.5rem] leading-[0.85]">
+                      {s.num}
+                    </span>
+                    <ArrowUpRight
+                      size={22}
+                      className="text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 mt-2"
+                    />
+                  </div>
+                  <div className={i === 0 ? "mt-16 md:mt-32" : "mt-10 md:mt-16"}>
+                    <p className="text-[10px] md:text-[11px] font-medium uppercase tracking-[0.22em] text-muted">
+                      Standard {s.ord}
+                    </p>
+                    <h3
+                      className={`mt-3 font-display text-ink leading-[0.98] tracking-[-0.02em] group-hover:text-accent transition-colors ${
+                        i === 0
+                          ? "text-[1.875rem] md:text-[3.25rem]"
+                          : "text-[1.5rem] md:text-[1.875rem]"
+                      }`}
+                    >
+                      {s.title}.
+                    </h3>
+                    <p
+                      className={`mt-4 font-display italic text-[color:var(--text-body)] max-w-[36ch] leading-[1.3] ${
+                        i === 0 ? "text-lg md:text-xl" : "text-base"
+                      }`}
+                    >
+                      {s.pull}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </Container>
       </section>
 
