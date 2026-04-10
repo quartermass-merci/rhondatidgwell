@@ -188,7 +188,7 @@ h1, h2, h3 {
   );
 }
 .auto-slider-track {
-  animation: auto-slider-marquee 60s linear infinite;
+  animation: auto-slider-marquee 120s linear infinite;
 }
 @keyframes auto-slider-marquee {
   from { transform: translate3d(0, 0, 0); }

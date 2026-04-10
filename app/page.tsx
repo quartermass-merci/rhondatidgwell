@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Container, Prose } from "@/components/container";
 import { CtaStrip } from "@/components/cta-strip";
-import { STANDARDS } from "@/content/standards";
+import { COMMITMENTS, HOME_INTRO_QUOTE } from "@/content/commitments";
 
 export const metadata = {
   description:
@@ -121,84 +121,81 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* The Standards of Practice — bento grid, asymmetric.
-          Replaces the old "On the record" stack. Each card links to its
-          standard's detail page. */}
-      <section className="border-y-[3px] border-ink py-16 md:py-24">
+      {/* My Commitment to Students — row of 5 commitment cards.
+          Each card links to its detail page at /commitments/[slug]. */}
+      <section
+        id="commitments"
+        className="border-y-[3px] border-ink py-20 md:py-28 scroll-mt-24"
+      >
         <Container>
-          <div className="md:grid md:grid-cols-12 md:gap-10 md:items-end mb-12 md:mb-16">
-            <div className="md:col-span-7">
+          <div className="md:grid md:grid-cols-12 md:gap-10 md:items-end mb-14 md:mb-20">
+            <div className="md:col-span-8">
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted">
-                Ontario College of Teachers
+                Five commitments · Sixteen competencies
               </p>
-              <h2 className="mt-5 font-display text-ink leading-[0.94] tracking-[-0.03em]"
-                  style={{ fontSize: "clamp(2.5rem, 7.5vw + 0.5rem, 7rem)" }}>
-                The Standards
+              <h2
+                className="mt-5 font-display text-ink leading-[0.94] tracking-[-0.03em]"
+                style={{ fontSize: "clamp(2.5rem, 7.5vw + 0.5rem, 7rem)" }}
+              >
+                My Commitment
                 <br />
-                of{" "}
+                to{" "}
                 <em className="font-normal text-[color:var(--accent-2)]">
-                  Practice.
+                  Students.
                 </em>
               </h2>
             </div>
-            <div className="md:col-span-5 mt-6 md:mt-0">
-              <p className="font-display italic text-xl md:text-2xl text-[color:var(--text-body)] leading-[1.25] max-w-md">
-                The five things every certified Ontario teacher is held to.
-                Here&apos;s how I read each one — and where to find the
-                receipts.
-              </p>
+            <div className="md:col-span-4 mt-8 md:mt-0">
+              <blockquote className="font-display italic text-lg md:text-xl text-[color:var(--text-body)] leading-[1.35] max-w-md border-l-2 border-[color:var(--accent-2)] pl-5">
+                &ldquo;{HOME_INTRO_QUOTE}&rdquo;
+                <footer className="mt-4 text-[11px] not-italic uppercase tracking-[0.22em] text-muted font-[family-name:var(--font-body)]">
+                  — Student nomination, World Teachers&apos; Day Award
+                </footer>
+              </blockquote>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-6 grid-flow-row-dense border-t border-l border-ink/90">
-            {STANDARDS.map((s, i) => {
-              const span =
-                i === 0
-                  ? "md:col-span-3 md:row-span-2"
-                  : i === 1
-                    ? "md:col-span-3"
-                    : "md:col-span-2";
-
-              return (
+          {/* Row of 5 cards. Single column on mobile, 5 columns on desktop. */}
+          <ol className="grid grid-cols-1 md:grid-cols-5 gap-0 border-t border-ink/90">
+            {COMMITMENTS.map((c) => (
+              <li
+                key={c.slug}
+                className="border-b border-ink/90 md:border-b-0 md:border-r md:last:border-r-0 md:border-ink/90"
+              >
                 <Link
-                  key={s.slug}
-                  href={`/standards-of-practice/${s.slug}`}
-                  className={`group relative flex flex-col justify-between border-r border-b border-ink/90 p-7 md:p-10 transition-colors hover:bg-highlight/60 ${span}`}
+                  href={`/commitments/${c.slug}`}
+                  className="group flex h-full flex-col justify-between gap-10 p-7 md:p-8 min-h-[22rem] md:min-h-[30rem] transition-colors hover:bg-highlight/60"
                 >
-                  <div className="flex items-start justify-between gap-6">
-                    <span className="font-display italic text-[color:var(--accent-2)] text-3xl md:text-[3.5rem] leading-[0.85]">
-                      {s.num}
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="font-display italic text-[color:var(--accent-2)] text-[3rem] md:text-[4rem] leading-[0.8]">
+                      {c.num}
                     </span>
                     <ArrowUpRight
-                      size={22}
-                      className="text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 mt-2"
+                      size={20}
+                      className="text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 mt-3"
                     />
                   </div>
-                  <div className={i === 0 ? "mt-16 md:mt-32" : "mt-10 md:mt-16"}>
-                    <p className="text-[10px] md:text-[11px] font-medium uppercase tracking-[0.22em] text-muted">
-                      Standard {s.ord}
+                  <div>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-muted">
+                      Commitment {c.ord}
                     </p>
-                    <h3
-                      className={`mt-3 font-display text-ink leading-[0.98] tracking-[-0.02em] group-hover:text-accent transition-colors ${
-                        i === 0
-                          ? "text-[1.875rem] md:text-[3.25rem]"
-                          : "text-[1.5rem] md:text-[1.875rem]"
-                      }`}
-                    >
-                      {s.title}.
+                    <h3 className="mt-3 font-display text-ink leading-[1.02] tracking-[-0.015em] text-[1.375rem] md:text-[1.625rem] group-hover:text-accent transition-colors text-balance">
+                      {c.title}.
                     </h3>
-                    <p
-                      className={`mt-4 font-display italic text-[color:var(--text-body)] max-w-[36ch] leading-[1.3] ${
-                        i === 0 ? "text-lg md:text-xl" : "text-base"
-                      }`}
-                    >
-                      {s.pull}
+                    <p className="mt-5 font-display italic text-[color:var(--text-body)] text-[0.95rem] md:text-base leading-[1.35]">
+                      {c.tagline}
+                    </p>
+                    <p className="mt-6 text-[10px] uppercase tracking-[0.22em] text-muted">
+                      {c.competencies.length}{" "}
+                      {c.competencies.length === 1
+                        ? "competency"
+                        : "competencies"}
                     </p>
                   </div>
                 </Link>
-              );
-            })}
-          </div>
+              </li>
+            ))}
+          </ol>
         </Container>
       </section>
 
