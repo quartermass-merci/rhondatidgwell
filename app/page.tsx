@@ -21,12 +21,8 @@ export default function Home() {
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted">
               Rhonda Tidgwell
             </p>
-            <h1 className="mt-5 font-display text-[2.5rem] md:text-[4.25rem] leading-[1.02] text-ink font-normal">
-              Twenty-four years
-              <br />
-              in classrooms
-              <br />
-              and libraries.
+            <h1 className="mt-5 font-display text-[2.25rem] md:text-[3.5rem] lg:text-[4rem] leading-[1.04] text-ink font-normal text-balance">
+              Twenty-four years in classrooms and libraries.
             </h1>
             <p className="mt-6 text-xl font-display italic text-ink/80">
               Teacher-Librarian and ESL Teacher, Rivercrest Junior School.
