@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Newsreader } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
+// Display: Fraunces (keep — it's doing the editorial work).
+// Variable font; omit weight to get the full axis. Adding SOFT/opsz requires
+// weight: variable under next/font, so we go full variable here.
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+// Body: Newsreader — a genuinely editorial serif with reading-optimized optical
+// sizing. Not on the "overused AI pairing" list and it keeps the literary-magazine
+// tone honest. See audit H1.
+const newsreader = Newsreader({
+  variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -31,7 +38,7 @@ export const metadata: Metadata = {
     title: "Rhonda Tidgwell — Teacher-Librarian, TDSB",
     description:
       "Portfolio of Rhonda Tidgwell, Teacher-Librarian with the Toronto District School Board.",
-    images: ["/og-image.png"],
+    // OG image is TBD — omit the key rather than ship a broken /og-image.png reference.
   },
 };
 
@@ -43,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${newsreader.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <a href="#main" className="skip-link">

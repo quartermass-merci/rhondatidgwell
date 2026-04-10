@@ -24,7 +24,7 @@ export function CtaStrip({
         </div>
         <Link
           href={ctaHref}
-          className="inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-3 text-sm font-medium text-paper hover:bg-accent/90 transition-colors whitespace-nowrap self-start md:self-auto"
+          className="inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-3.5 text-sm font-medium text-paper hover:bg-accent/90 transition-colors whitespace-nowrap self-start md:self-auto min-h-[44px]"
         >
           {ctaLabel}
           <ArrowRight size={15} />

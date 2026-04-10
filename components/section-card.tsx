@@ -10,6 +10,8 @@ export type SectionCardProps = {
   className?: string;
 };
 
+// Audit M3 — no drop shadow, no translate-y. The affordance is typographic:
+// left rule shifts to --accent on hover, the title underlines, the arrow moves.
 export function SectionCard({
   href,
   label,
@@ -21,20 +23,22 @@ export function SectionCard({
     <Link
       href={href}
       className={cn(
-        "group flex flex-col rounded-sm border border-rule bg-paper p-6 md:p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_10px_30px_-12px_rgba(26,31,46,0.18)] hover:border-accent/40",
+        "group relative flex flex-col bg-paper pl-6 pr-6 py-7 md:pl-8 md:pr-6 md:py-8",
+        "border-l-2 border-rule transition-colors duration-200",
+        "hover:border-l-[var(--accent)]",
         className,
       )}
     >
       <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
         {label}
       </p>
-      <h3 className="mt-3 font-display text-2xl md:text-3xl leading-tight text-ink">
+      <h3 className="mt-3 font-display text-2xl md:text-[1.75rem] leading-tight text-ink group-hover:[text-decoration:underline] [text-decoration-thickness:1px] [text-underline-offset:6px] decoration-[var(--accent-40)]">
         {title}
       </h3>
-      <p className="mt-3 text-sm md:text-base text-ink/80 leading-relaxed">
+      <p className="mt-3 text-[0.95rem] md:text-base leading-relaxed text-[color:var(--text-body)]">
         {blurb}
       </p>
-      <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
         Read more
         <ArrowRight
           size={14}

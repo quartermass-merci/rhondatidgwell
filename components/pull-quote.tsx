@@ -14,27 +14,33 @@ export function PullQuote({
   className,
 }: PullQuoteProps) {
   if (style === "hero") {
+    // Audit M1 — left-aligned, oversized, attribution as marginalia.
+    // No centering, no background box, no giant opening glyph hovering above.
     return (
       <figure
         className={cn(
-          "mx-auto w-full max-w-4xl rounded-sm bg-highlight px-8 py-14 md:px-16 md:py-20 text-center",
+          "relative mx-auto w-full max-w-5xl py-10 md:py-14",
           className,
         )}
       >
-        <span
-          aria-hidden
-          className="block font-display text-[5rem] leading-none text-accent/70 -mb-6"
-        >
-          &ldquo;
-        </span>
-        <blockquote className="font-display italic text-2xl md:text-3xl leading-snug text-ink">
-          {quote}
-        </blockquote>
-        {attribution && (
-          <figcaption className="mt-6 text-sm uppercase tracking-[0.16em] text-muted">
-            {attribution}
-          </figcaption>
-        )}
+        <div className="md:grid md:grid-cols-12 md:gap-10">
+          <blockquote className="md:col-span-10 relative font-display italic font-normal text-[2rem] sm:text-[2.5rem] md:text-[3.25rem] leading-[1.1] tracking-[-0.01em] text-ink">
+            {/* Hanging opening quote in the left gutter on md+ */}
+            <span
+              aria-hidden
+              className="hidden md:block absolute -left-8 top-[-0.05em] font-display not-italic text-[3.75rem] leading-none text-[color:var(--accent-40)]"
+            >
+              &ldquo;
+            </span>
+            {quote}
+          </blockquote>
+          {attribution && (
+            <figcaption className="md:col-span-2 mt-6 md:mt-3 text-xs uppercase tracking-[0.18em] text-muted md:self-end">
+              <span aria-hidden className="mr-1">—</span>
+              {attribution}
+            </figcaption>
+          )}
+        </div>
       </figure>
     );
   }
@@ -42,7 +48,7 @@ export function PullQuote({
   return (
     <figure
       className={cn(
-        "my-10 pl-6 border-l-2 border-accent/70",
+        "my-10 pl-6 border-l-2 border-[color:var(--accent-70)]",
         className,
       )}
     >

@@ -22,6 +22,8 @@ const ICON = {
   docx: FileType,
 } as const;
 
+// Audit M3 — drop shadow replaced with a left-rule affordance + underline on
+// the title and a moving arrow on the CTA.
 export function ArtifactCard({
   label,
   title,
@@ -38,11 +40,13 @@ export function ArtifactCard({
   return (
     <article
       className={cn(
-        "group relative flex flex-col rounded-sm border border-rule bg-paper p-6 md:p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_10px_30px_-12px_rgba(26,31,46,0.18)]",
+        "group relative flex flex-col bg-paper pl-6 pr-6 py-7 md:pl-7",
+        "border-l-2 border-rule transition-colors duration-200",
+        "hover:border-l-[var(--accent)]",
         className,
       )}
     >
-      <div className="absolute top-5 right-5 text-muted group-hover:text-accent transition-colors">
+      <div className="absolute top-6 right-5 text-muted group-hover:text-accent transition-colors">
         <Icon size={18} aria-hidden />
       </div>
       <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted pr-10">
@@ -51,7 +55,9 @@ export function ArtifactCard({
       <h3 className="mt-3 font-display text-xl md:text-2xl leading-snug text-ink">
         {title}
       </h3>
-      <p className="mt-3 text-sm text-ink/80 leading-relaxed">{blurb}</p>
+      <p className="mt-3 text-[0.95rem] leading-relaxed text-[color:var(--text-body)]">
+        {blurb}
+      </p>
 
       {competencyTags.length > 0 && (
         <ul className="mt-5 flex flex-wrap gap-1.5">

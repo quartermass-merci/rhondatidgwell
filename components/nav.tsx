@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -18,6 +18,8 @@ const NAV_ITEMS = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -26,6 +28,7 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll while the sheet is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -33,13 +36,55 @@ export function Nav() {
     };
   }, [open]);
 
+  // Audit H3 — focus trap + Esc close + return focus to trigger
+  useEffect(() => {
+    if (!open) return;
+
+    // Move focus into the sheet
+    const first = sheetRef.current?.querySelector<HTMLElement>(
+      "a, button, [tabindex]:not([tabindex='-1'])",
+    );
+    first?.focus();
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setOpen(false);
+        triggerRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !sheetRef.current) return;
+
+      const focusables = sheetRef.current.querySelectorAll<HTMLElement>(
+        "a, button, [tabindex]:not([tabindex='-1'])",
+      );
+      if (focusables.length === 0) return;
+
+      const firstEl = focusables[0];
+      const lastEl = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [open]);
+
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 transition-colors duration-300",
+        // Audit M2 — no backdrop-blur. A 1px rule appears on scroll, nothing else.
+        "sticky top-0 z-40",
         scrolled
-          ? "bg-paper/85 backdrop-blur border-b border-rule"
-          : "bg-transparent",
+          ? "bg-paper border-b border-rule"
+          : "bg-paper/0 border-b border-transparent",
+        "transition-[background-color,border-color] duration-200",
       )}
     >
       <nav
@@ -65,9 +110,11 @@ export function Nav() {
           ))}
         </ul>
         <button
+          ref={triggerRef}
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-menu"
           className="md:hidden p-2 -mr-2 text-ink"
           onClick={() => setOpen((o) => !o)}
         >
@@ -78,9 +125,12 @@ export function Nav() {
       {/* Mobile sheet */}
       {open && (
         <div
+          id="mobile-menu"
+          ref={sheetRef}
           className="fixed inset-0 top-16 z-30 bg-paper md:hidden"
           role="dialog"
           aria-modal="true"
+          aria-label="Primary navigation"
         >
           <ul className="flex flex-col px-6 py-8 gap-6">
             {NAV_ITEMS.map((item) => (

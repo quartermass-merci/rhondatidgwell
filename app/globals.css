@@ -1,25 +1,38 @@
 @import "tailwindcss";
 
-/* ---------- Library palette (brief §4) ---------- */
+/* ---------- Library palette (brief §4, tuned per audit) ---------- */
 :root {
-  --ink: #1A1F2E;        /* body text, deep ink */
-  --paper: #FAFAF7;      /* background, warm off-white */
-  --accent: #8B2E2E;     /* links, CTAs, deep library red */
-  --muted: #6B7280;      /* meta, borders */
-  --highlight: #F1EDE4;  /* pull-quote bg, warm cream */
-  --rule: #E6E1D5;       /* subtle dividers */
+  --ink: #1A1F2E;           /* body text, deep ink */
+  --paper: #FAFAF7;         /* background, warm off-white */
+  --accent: #8B2E2E;        /* links, CTAs, deep library red */
+  --accent-2: #2E4A5B;      /* secondary accent — deep marine (audit L4) */
+  --muted: #5A6170;         /* meta, borders — darkened one stop (audit L1) */
+  --highlight: #F1EDE4;     /* pull-quote bg, warm cream */
+  --rule: #E6E1D5;          /* subtle dividers */
+
+  /* Principled alpha scale — replaces arbitrary /80 /40 classes (audit M4) */
+  --ink-90: color-mix(in oklab, var(--ink) 90%, transparent);
+  --ink-80: color-mix(in oklab, var(--ink) 80%, transparent);
+  --ink-60: color-mix(in oklab, var(--ink) 60%, transparent);
+  --ink-20: color-mix(in oklab, var(--ink) 20%, transparent);
+  --accent-40: color-mix(in oklab, var(--accent) 40%, transparent);
+  --accent-70: color-mix(in oklab, var(--accent) 70%, transparent);
+
+  /* Body text is ink-90, not pure ink — one token, used everywhere */
+  --text-body: var(--ink-90);
 }
 
 @theme inline {
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
   --color-muted: var(--muted);
   --color-highlight: var(--highlight);
   --color-rule: var(--rule);
 
   --font-display: var(--font-fraunces);
-  --font-sans: var(--font-inter);
+  --font-body: var(--font-body);
 
   /* Type scale: 12/14/16/20/24/32/48/64 */
   --text-xs: 0.75rem;
@@ -34,21 +47,38 @@
 
 html {
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-family: var(--font-body), Georgia, "Times New Roman", serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-optical-sizing: auto;
 }
 
 /* Display type defaults */
 h1, h2, h3 {
   font-family: var(--font-fraunces), Georgia, serif;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  font-optical-sizing: auto;
+}
+
+/* Fluid display sizes (audit L2) — used by hero/page headings */
+.h-display-xl {
+  font-size: clamp(2.25rem, 4.5vw + 1rem, 4.25rem);
+  line-height: 1.04;
+}
+.h-display-lg {
+  font-size: clamp(2rem, 3.5vw + 1rem, 3.5rem);
+  line-height: 1.06;
+}
+.h-display-md {
+  font-size: clamp(1.75rem, 2.4vw + 0.75rem, 2.5rem);
   line-height: 1.1;
-  letter-spacing: -0.01em;
 }
 
 /* Skip link (a11y) */
@@ -77,4 +107,27 @@ h1, h2, h3 {
 ::selection {
   background: var(--accent);
   color: var(--paper);
+}
+
+/* Drop cap — used on the About page opener */
+.dropcap::first-letter {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  float: left;
+  font-size: 5.5em;
+  line-height: 0.82;
+  padding: 0.1em 0.12em 0 0;
+  color: var(--accent);
+}
+
+/* Audit M6 — honor prefers-reduced-motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

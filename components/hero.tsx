@@ -22,27 +22,26 @@ export function Hero({
     <section
       className={cn(
         "mx-auto w-full max-w-6xl px-6",
-        size === "lg" ? "py-24 md:py-32" : "py-16 md:py-24",
+        size === "lg" ? "py-20 md:py-28" : "py-14 md:py-20",
         className,
       )}
     >
       {eyebrow && (
-        <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted">
+        <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted">
           {eyebrow}
         </p>
       )}
       <h1
         className={cn(
-          "mt-5 font-display text-ink font-normal max-w-4xl",
-          size === "lg"
-            ? "text-[2.5rem] md:text-[4rem] leading-[1.05]"
-            : "text-3xl md:text-5xl leading-[1.08]",
+          "mt-6 font-display text-ink font-normal max-w-4xl text-balance",
+          // Audit L2 — fluid clamp, no more step-jumps between breakpoints
+          size === "lg" ? "h-display-xl" : "h-display-lg",
         )}
       >
         {title}
       </h1>
       {lede && (
-        <p className="mt-6 max-w-2xl text-lg text-ink/80 leading-relaxed">
+        <p className="mt-6 max-w-2xl text-lg md:text-xl text-[color:var(--text-body)] leading-relaxed">
           {lede}
         </p>
       )}

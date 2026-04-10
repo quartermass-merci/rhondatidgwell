@@ -26,7 +26,7 @@ export function Prose({
   return (
     <div
       className={cn(
-        "max-w-[68ch] text-ink/90 leading-relaxed [&>p+p]:mt-5 [&>p]:text-[1.0625rem] md:[&>p]:text-lg",
+        "max-w-[62ch] text-[color:var(--text-body)] leading-[1.65] [&>p+p]:mt-6 [&>p]:text-[1.0625rem] md:[&>p]:text-[1.1875rem]",
         className,
       )}
     >
