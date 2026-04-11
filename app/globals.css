@@ -9,6 +9,9 @@
   --muted: #5A6170;         /* meta, borders — darkened one stop (audit L1) */
   --highlight: #F1EDE4;     /* pull-quote bg, warm cream */
   --rule: #E6E1D5;          /* subtle dividers */
+  --hot: #FF5A1F;           /* overdrive coral — the "live wire" accent */
+  --citrus: #F4C538;        /* sun-yellow highlight for marker strokes */
+  --sky: #7FB8D4;            /* chalk-blue counterpoint */
 
   /* Principled alpha scale — replaces arbitrary /80 /40 classes (audit M4) */
   --ink-90: color-mix(in oklab, var(--ink) 90%, transparent);
@@ -35,6 +38,9 @@
   --color-muted: var(--muted);
   --color-highlight: var(--highlight);
   --color-rule: var(--rule);
+  --color-hot: var(--hot);
+  --color-citrus: var(--citrus);
+  --color-sky: var(--sky);
 
   --font-display: var(--font-fraunces);
   --font-body: var(--font-body);
@@ -194,6 +200,239 @@ h1, h2, h3 {
   from { transform: translate3d(0, 0, 0); }
   to   { transform: translate3d(-50%, 0, 0); }
 }
+
+/* ========================================================================
+   OVERDRIVE PASS — kinetic editorial motion language
+   ======================================================================== */
+
+/* Animated gradient on the hot accent. Used on hot-link underlines
+   and the CTA strip background. Requires @property for interpolation. */
+@property --grad-pos {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes grad-drift {
+  0%   { --grad-pos: 0%; }
+  100% { --grad-pos: 100%; }
+}
+
+/* Hot-link: the marker-highlighted link treatment. Citrus yellow
+   underline that grows to fill on hover. Used for inline CTAs. */
+.hot-link {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+  text-decoration: none;
+  background-image: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--citrus) 85%, transparent) 0%,
+    color-mix(in oklab, var(--citrus) 85%, transparent) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 32%;
+  background-position: 0 88%;
+  transition: background-size 260ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+.hot-link:hover,
+.hot-link:focus-visible {
+  background-size: 100% 92%;
+  color: var(--ink);
+}
+
+/* Hot button — animated conic gradient border around a coral pill.
+   Used as primary CTA replacement for the muted red button. */
+.btn-hot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-hot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    var(--hot) 0%,
+    var(--citrus) 35%,
+    var(--hot) 70%,
+    var(--accent-2) 100%
+  );
+  background-size: 300% 100%;
+  background-position: var(--grad-pos, 0%) 0;
+  opacity: 0;
+  transition: opacity 220ms ease;
+  z-index: -1;
+  animation: grad-drift 3.5s linear infinite;
+}
+.btn-hot:hover::before,
+.btn-hot:focus-visible::before { opacity: 1; }
+.btn-hot:hover { transform: translate(-2px, -2px); color: var(--ink); }
+.btn-hot:active { transform: translate(0, 0); }
+
+/* Tag chip — small squared pill for metadata bylines */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--paper);
+}
+.chip.chip-hot   { background: var(--hot);     color: var(--paper); }
+.chip.chip-sky   { background: var(--sky);     color: var(--ink); }
+.chip.chip-citrus{ background: var(--citrus);  color: var(--ink); }
+.chip.chip-marine{ background: var(--accent-2);color: var(--paper); }
+
+/* Ticker — infinite horizontal marquee of headline words.
+   Uses the same duplicated-track trick as auto-slider. */
+.ticker {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: ticker-scroll 40s linear infinite;
+  will-change: transform;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Scroll-driven reveal — elements rise + fade as they enter the viewport.
+   The animation runs across the entry phase only, so by the time the
+   element is fully in view, it's fully revealed.
+   Progressive enhancement: no animation-timeline → renders already visible. */
+.reveal { opacity: 1; transform: none; }
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+}
+@keyframes reveal-rise {
+  from { opacity: 0; transform: translate3d(0, 2rem, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Scroll-driven tilt — for photo tiles, slight rotation correction as
+   they enter view. Feels physical. */
+.reveal-tilt { opacity: 1; transform: none; }
+@supports (animation-timeline: view()) {
+  .reveal-tilt {
+    animation: reveal-tilt linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+}
+@keyframes reveal-tilt {
+  from { opacity: 0; transform: translate3d(0, 2rem, 0) rotate(var(--tilt-from, -2deg)); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0) rotate(var(--tilt-to, 0deg)); }
+}
+
+/* Draw-in SVG underline — one-shot, triggered by viewport entry. */
+.draw-line path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* Photo tile — the core visual unit of the new layout. Image + overlay
+   title, tilt on hover, a coral corner strip for affordance. */
+.photo-tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--highlight);
+  isolation: isolate;
+  transition: transform 360ms cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+.photo-tile img {
+  transition: transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
+              filter  400ms ease;
+  filter: saturate(0.85) contrast(1.02);
+}
+.photo-tile:hover { transform: translate(-3px, -3px); }
+.photo-tile:hover img { transform: scale(1.04); filter: saturate(1.05) contrast(1.05); }
+.photo-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    color-mix(in oklab, var(--ink) 82%, transparent) 100%
+  );
+  pointer-events: none;
+}
+.photo-tile .tile-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--hot);
+  z-index: 2;
+  transform: translate(0, -100%);
+  transition: transform 280ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.photo-tile:hover .tile-corner { transform: translate(0, 0); }
+
+/* Kinetic numeral — the Roman numerals on commitment cards drift
+   gently as the user scrolls. Pure CSS. */
+@supports (animation-timeline: view()) {
+  .num-drift {
+    animation: num-drift linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+}
+@keyframes num-drift {
+  from { transform: translate3d(-0.5rem, 0.5rem, 0); }
+  to   { transform: translate3d(0.5rem, -0.5rem, 0); }
+}
+
+/* Cursor-reactive text — uses CSS clip-path masking, layer with a
+   hot colour behind the ink for a liquid highlight effect on hover. */
+.ink-swap {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+  transition: color 220ms ease;
+}
+.ink-swap::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--hot);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 420ms cubic-bezier(0.65, 0, 0.35, 1);
+  pointer-events: none;
+}
+.ink-swap:hover::before,
+a:hover .ink-swap::before { clip-path: inset(0 0 0 0); }
 
 /* Audit M6 — honor prefers-reduced-motion globally */
 @media (prefers-reduced-motion: reduce) {

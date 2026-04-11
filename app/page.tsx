@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { Container, Prose } from "@/components/container";
-import { CtaStrip } from "@/components/cta-strip";
+import { Container } from "@/components/container";
+import { Ticker } from "@/components/ticker";
 import { COMMITMENTS, HOME_INTRO_QUOTE } from "@/content/commitments";
 
 export const metadata = {
@@ -10,281 +10,434 @@ export const metadata = {
     "Teacher-Librarian and ESL teacher at Rivercrest Junior School. Twenty-four years in TDSB classrooms and learning commons. Inquiry-driven, equity-forward, still in love with the work.",
 };
 
-const SECTIONS = [
+// The four cornerstones — now photo-led bento tiles, each points
+// into one of the site's top-level sections.
+const CORNERSTONES = [
   {
     num: "I",
     href: "/classroom",
     title: "Classroom Practice",
     blurb:
-      "How I plan and teach from Grade 4 through Grade 8 — lessons, inquiry work, and the daily choices that help me reach every kid in the room.",
+      "Nineteen years. Four TDSB schools. Lessons, inquiry, and the daily choices that reach every kid.",
+    photo: "/images/competencies/4/02.jpg",
+    chip: "Grade 4–8",
+    tint: "marine",
   },
   {
     num: "II",
     href: "/library",
-    title: "Library & Learning Commons",
+    title: "Library &amp; Learning Commons",
     blurb:
-      "The Rivercrest library is my other classroom. A look at the space, the makerspace, our digital citizenship work, and the collection I've been building since 2021.",
+      "The Rivercrest library is my other classroom. Makerspace, digital citizenship, the collection I've been building since 2021.",
+    photo: "/images/competencies/15/02.jpg",
+    chip: "Since 2021",
+    tint: "hot",
   },
   {
     num: "III",
     href: "/assessment",
-    title: "Assessment & Feedback",
+    title: "Assessment &amp; Feedback",
     blurb:
-      "What Growing Success looks like in the classroom — student conferences, levelled exemplars, my comment bank, and feedback kids can use to get better.",
+      "Growing Success in the room — conferences, exemplars, a comment bank, feedback kids can actually use.",
+    photo: "/images/competencies/6/02.jpg",
+    chip: "Growing Success",
+    tint: "citrus",
   },
   {
     num: "IV",
     href: "/leadership",
-    title: "Leadership & Community",
+    title: "Leadership &amp; Community",
     blurb:
-      "The work that happens outside my own classroom: staff PD, mentoring new teachers, equity work, and the committees and learning communities that keep me growing.",
+      "The work that happens outside my own classroom: staff PD, mentoring, equity, and the committees that keep me growing.",
+    photo: "/images/competencies/14/03.jpg",
+    chip: "PLC · Mentor",
+    tint: "sky",
   },
-];
+] as const;
+
+const CHIP_TONE = {
+  marine: "chip-marine",
+  hot: "chip-hot",
+  citrus: "chip-citrus",
+  sky: "chip-sky",
+} as const;
 
 export default function Home() {
   return (
     <main id="main" className="flex-1">
-      {/* Hero — photo-led, face-cropped. The big display headline is gone;
-          the bio carries the page now. */}
-      <Container className="pt-12 md:pt-20 pb-20 md:pb-28">
-        <div className="md:grid md:grid-cols-12 md:gap-10 items-start">
-          {/* Photo column — face-focused via object-position */}
-          <figure className="md:col-span-5 md:col-start-1 relative aspect-[4/5] overflow-hidden bg-highlight">
-            <Image
-              src="/images/rhonda.jpg"
-              alt="Rhonda Tidgwell, Teacher-Librarian at Rivercrest Junior School"
-              fill
-              sizes="(min-width: 768px) 40vw, 100vw"
-              className="object-cover object-[center_22%]"
-              priority
-            />
-            <figcaption className="absolute left-0 bottom-0 right-0 px-4 py-3 bg-paper/90 text-[11px] uppercase tracking-[0.18em] text-muted">
-              Rhonda Tidgwell
-            </figcaption>
-          </figure>
-
-          {/* Bio column */}
-          <div className="md:col-span-7 mt-8 md:mt-0 md:pt-2">
-            <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-muted">
-              Toronto
-              <span className="text-[color:var(--accent-2)] mx-2">§</span>
-              Since 2002
-            </p>
-            <h1
-              className="mt-5 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
-              style={{ fontSize: "clamp(3rem, 9vw + 0.5rem, 8rem)" }}
-            >
-              Rhonda{" "}
-              <em className="font-normal text-[color:var(--accent-2)]">
-                Tidgwell.
-              </em>
-            </h1>
-            <p className="mt-6 font-display italic text-lg md:text-xl text-[color:var(--text-body)] leading-[1.3]">
-              Teacher-Librarian &amp; ESL Teacher, Rivercrest Junior School.
-            </p>
-            <Prose className="mt-8">
-              <p>
-                I&apos;m currently the Teacher-Librarian and Multi-Language
-                Learning (ESL) Teacher at Rivercrest Junior School: K–5
-                library literacy, STEAM and coding, small-group English
-                language learning, and Special Ed resource. I&apos;ve been in
-                TDSB classrooms since 2002.
-              </p>
-              <p>
-                I am committed to moving beyond &lsquo;best practice&rsquo;
-                by modelling innovation and critical thinking skills in the
-                classroom.
-              </p>
-              <p>
-                My goal is to challenge and support each student to achieve
-                excellence in academic growth and global citizenship through
-                the delivery of differentiated, inquiry-based instruction to
-                the whole child.
-              </p>
-              <p>
-                This site is my portfolio that details my career as a
-                teacher, a teacher-librarian, and an advocate for every
-                student I come across.
-              </p>
-            </Prose>
-            <div className="mt-10">
-              <Link
-                href="/about"
-                className="inline-flex items-center px-1 py-3.5 text-sm font-medium text-ink hover:text-accent transition-colors min-h-[44px] border-b border-ink hover:border-accent"
-              >
-                Read my philosophy
-                <ArrowRight size={16} className="ml-2" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </Container>
-
-      {/* My Commitment to Students — row of 5 commitment cards.
-          Each card links to its detail page at /commitments/[slug]. */}
-      <section
-        id="commitments"
-        className="border-y-[3px] border-ink py-20 md:py-28 scroll-mt-24"
-      >
+      {/* ============================================================
+          HERO — dense 12-col, photo left, name right. Much tighter
+          padding than before. Name is monumental. Meta strip with
+          chip + underline. A single primary CTA.
+          ============================================================ */}
+      <section className="pt-10 md:pt-14 pb-12 md:pb-16 overflow-hidden">
         <Container>
-          <div className="md:grid md:grid-cols-12 md:gap-10 md:items-end mb-14 md:mb-20">
-            <div className="md:col-span-8">
-              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted">
-                Five commitments · Sixteen competencies
-              </p>
-              <h2
-                className="mt-5 font-display text-ink leading-[0.94] tracking-[-0.03em]"
-                style={{ fontSize: "clamp(2.5rem, 7.5vw + 0.5rem, 7rem)" }}
+          <div className="grid grid-cols-12 gap-5 md:gap-8 items-start">
+            {/* Photo — tilted frame, coral tape strip */}
+            <figure className="col-span-12 md:col-span-5 relative aspect-[4/5] bg-highlight overflow-hidden">
+              <Image
+                src="/images/rhonda.jpg"
+                alt="Rhonda Tidgwell, Teacher-Librarian at Rivercrest Junior School"
+                fill
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="object-cover object-[center_22%]"
+                priority
+              />
+              {/* Coral corner strip */}
+              <span
+                aria-hidden
+                className="absolute top-0 right-0 h-20 w-20 bg-[color:var(--hot)]"
+                style={{
+                  clipPath: "polygon(100% 0, 100% 100%, 0 0)",
+                }}
+              />
+              {/* Name caption bar */}
+              <figcaption className="absolute left-0 bottom-0 right-0 px-4 py-3 bg-paper/95 backdrop-blur-sm flex items-center justify-between">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink">
+                  Rhonda Tidgwell
+                </span>
+                <span className="chip chip-marine">TDSB · 24 yrs</span>
+              </figcaption>
+            </figure>
+
+            {/* Name + bio */}
+            <div className="col-span-12 md:col-span-7 md:pl-4">
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="chip chip-hot">Open for Sept 2026</span>
+                <span className="chip">Toronto</span>
+                <span className="chip chip-sky">K–5 · ESL · Library</span>
+              </div>
+
+              <h1
+                className="mt-5 font-display font-normal text-ink leading-[0.84] tracking-[-0.04em]"
+                style={{ fontSize: "clamp(3.25rem, 10.5vw + 0.5rem, 11rem)" }}
               >
-                My Commitment
+                Rhonda
                 <br />
-                to{" "}
-                <em className="font-normal text-[color:var(--accent-2)]">
-                  Students.
-                </em>
-              </h2>
-            </div>
-            <div className="md:col-span-4 mt-8 md:mt-0">
-              <blockquote className="font-display italic text-lg md:text-xl text-[color:var(--text-body)] leading-[1.35] max-w-md border-l-2 border-[color:var(--accent-2)] pl-5">
-                &ldquo;{HOME_INTRO_QUOTE}&rdquo;
-                <footer className="mt-4 text-[11px] not-italic uppercase tracking-[0.22em] text-muted font-[family-name:var(--font-body)]">
-                  — Student nomination, World Teachers&apos; Day Award
-                </footer>
-              </blockquote>
+                <span className="relative inline-block">
+                  <em className="font-normal text-[color:var(--accent-2)]">
+                    Tidgwell.
+                  </em>
+                  {/* Hand-drawn citrus underline */}
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 600 40"
+                    preserveAspectRatio="none"
+                    className="absolute left-0 right-0 -bottom-2 w-full h-[0.35em] draw-line"
+                  >
+                    <path
+                      d="M8 26 C 140 4, 300 36, 592 14"
+                      fill="none"
+                      stroke="var(--hot)"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
+              </h1>
+
+              <p className="mt-6 font-display italic text-xl md:text-2xl text-[color:var(--text-body)] leading-[1.28] max-w-[36ch]">
+                Teacher-Librarian &amp; ESL Teacher at Rivercrest Junior
+                School.
+              </p>
+
+              <p className="mt-5 text-[0.98rem] md:text-base leading-[1.55] text-[color:var(--text-body)] max-w-[56ch]">
+                K–5 library literacy, STEAM and coding, small-group English
+                language learning, and Special Ed resource — at Rivercrest
+                since 2021, in TDSB classrooms since 2002. Committed to
+                moving beyond &lsquo;best practice&rsquo; by modelling
+                innovation and critical thinking with every kid who walks
+                in.
+              </p>
+
+              <div className="mt-7 flex flex-wrap items-center gap-5">
+                <Link href="/about" className="btn-hot">
+                  Read my philosophy
+                  <ArrowRight size={16} />
+                </Link>
+                <Link
+                  href="#commitments"
+                  className="hot-link text-sm font-medium"
+                >
+                  Or jump to the commitments
+                </Link>
+              </div>
             </div>
           </div>
-
-          {/* Row of 5 cards. Single column on mobile, 5 columns on desktop. */}
-          <ol className="grid grid-cols-1 md:grid-cols-5 gap-0 border-t border-ink/90">
-            {COMMITMENTS.map((c) => (
-              <li
-                key={c.slug}
-                className="border-b border-ink/90 md:border-b-0 md:border-r md:last:border-r-0 md:border-ink/90"
-              >
-                <Link
-                  href={`/commitments/${c.slug}`}
-                  className="group flex h-full flex-col justify-between gap-10 p-7 md:p-8 min-h-[22rem] md:min-h-[30rem] transition-colors hover:bg-highlight/60"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="font-display italic text-[color:var(--accent-2)] text-[3rem] md:text-[4rem] leading-[0.8]">
-                      {c.num}
-                    </span>
-                    <ArrowUpRight
-                      size={20}
-                      className="text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 mt-3"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-muted">
-                      Commitment {c.ord}
-                    </p>
-                    <h3 className="mt-3 font-display text-ink leading-[1.02] tracking-[-0.015em] text-[1.375rem] md:text-[1.625rem] group-hover:text-accent transition-colors text-balance">
-                      {c.title}.
-                    </h3>
-                    <p className="mt-5 font-display italic text-[color:var(--text-body)] text-[0.95rem] md:text-base leading-[1.35]">
-                      {c.tagline}
-                    </p>
-                    <p className="mt-6 text-[10px] uppercase tracking-[0.22em] text-muted">
-                      {c.competencies.length}{" "}
-                      {c.competencies.length === 1
-                        ? "competency"
-                        : "competencies"}
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ol>
         </Container>
       </section>
 
-      {/* Pull-quote — one line, sized to fit viewport width. */}
-      <section className="bg-highlight py-20 md:py-28 overflow-hidden">
+      {/* ============================================================
+          TICKER — infinite marquee of what she does. Kinetic header.
+          ============================================================ */}
+      <Ticker
+        tone="ink"
+        items={[
+          "Teacher-Librarian",
+          "K–5 STEAM + Coding",
+          "Multi-Language Learner Support",
+          "Inquiry-Driven",
+          "Makerspace",
+          "Forest of Reading",
+          "Equity-Forward",
+          "Since 2002",
+        ]}
+      />
+
+      {/* ============================================================
+          COMMITMENTS — visually dense row of 5. Photo backgrounds,
+          hover coral corner, kinetic numeral drift on scroll.
+          ============================================================ */}
+      <section
+        id="commitments"
+        className="border-b-[3px] border-ink scroll-mt-24 bg-highlight"
+      >
+        {/* Section header — tight, one line of meta + one line of title */}
+        <Container className="pt-14 md:pt-20 pb-8 md:pb-12">
+          <div className="flex items-end justify-between gap-6 flex-wrap">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="chip chip-hot">The heart of the work</span>
+                <span className="text-[11px] uppercase tracking-[0.22em] text-muted">
+                  5 commitments · 16 competencies
+                </span>
+              </div>
+              <h2
+                className="font-display text-ink leading-[0.92] tracking-[-0.035em]"
+                style={{ fontSize: "clamp(2.5rem, 7.5vw + 0.5rem, 7.5rem)" }}
+              >
+                My commitment to{" "}
+                <em className="font-normal text-[color:var(--accent-2)]">
+                  students
+                </em>
+                <span className="text-[color:var(--hot)]">.</span>
+              </h2>
+            </div>
+            <blockquote className="font-display italic text-base md:text-lg text-[color:var(--text-body)] leading-[1.35] max-w-sm border-l-2 border-[color:var(--hot)] pl-4 shrink-0">
+              &ldquo;{HOME_INTRO_QUOTE}&rdquo;
+              <footer className="mt-2 text-[10px] not-italic uppercase tracking-[0.2em] text-muted">
+                — Student nomination, World Teachers&apos; Day Award
+              </footer>
+            </blockquote>
+          </div>
+        </Container>
+
+        {/* Row of 5 photo-backed commitment tiles */}
+        <ol className="grid grid-cols-2 md:grid-cols-5 gap-0 border-t-[1.5px] border-ink/90">
+          {COMMITMENTS.map((c, i) => {
+            const photo = `${c.competencies[0].photoDir}/01.jpg`;
+            const lastOnMobile = i === COMMITMENTS.length - 1 && i % 2 === 0;
+            return (
+              <li
+                key={c.slug}
+                className={`relative border-ink/90 ${
+                  i < COMMITMENTS.length - 1 ? "md:border-r-[1.5px]" : ""
+                } ${i % 2 === 0 ? "border-r-[1.5px] md:border-r-[1.5px]" : ""} ${
+                  lastOnMobile ? "col-span-2 md:col-span-1" : ""
+                }`}
+              >
+                <Link
+                  href={`/commitments/${c.slug}`}
+                  className="photo-tile reveal group flex h-full flex-col justify-between min-h-[20rem] md:min-h-[32rem]"
+                >
+                  <Image
+                    src={photo}
+                    alt={c.title}
+                    fill
+                    sizes="(min-width: 768px) 20vw, 50vw"
+                    className="object-cover"
+                  />
+                  <span className="tile-corner" />
+
+                  {/* Overlay content — all above the gradient ::after */}
+                  <div className="relative z-10 p-5 md:p-6 flex flex-col justify-between h-full">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="font-display italic text-[color:var(--citrus)] text-[3.25rem] md:text-[4.5rem] leading-[0.75] num-drift drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
+                        {c.num}
+                      </span>
+                      <ArrowUpRight
+                        size={22}
+                        className="text-paper mt-2 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300"
+                      />
+                    </div>
+                    <div className="mt-auto">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--citrus)]">
+                        {c.competencies.length}{" "}
+                        {c.competencies.length === 1
+                          ? "competency"
+                          : "competencies"}
+                      </p>
+                      <h3 className="mt-2 font-display text-paper leading-[1.02] tracking-[-0.015em] text-[1.15rem] md:text-[1.3rem] text-balance drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+                        {c.title}.
+                      </h3>
+                      <p className="mt-2 font-display italic text-paper/90 text-[0.85rem] md:text-[0.95rem] leading-[1.3]">
+                        {c.tagline}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+
+      {/* ============================================================
+          BIG PULL QUOTE — compact one-liner, bright.
+          ============================================================ */}
+      <section className="py-14 md:py-20 overflow-hidden bg-paper">
         <Container>
           <figure className="relative">
             <blockquote
               className="font-display italic font-normal text-ink leading-[1] tracking-[-0.03em] whitespace-nowrap"
-              style={{ fontSize: "clamp(1.5rem, 5.2vw, 5.5rem)" }}
+              style={{ fontSize: "clamp(1.5rem, 5vw, 5rem)" }}
             >
-              <span
-                aria-hidden
-                className="text-[color:var(--accent-2)] mr-1"
-              >
+              <span aria-hidden className="text-[color:var(--hot)] mr-1">
                 &ldquo;
               </span>
-              Every student deserves a &lsquo;Ms.&nbsp;Tidgwell&nbsp;year.&rsquo;
-              <span
-                aria-hidden
-                className="text-[color:var(--accent-2)] ml-1"
-              >
+              Every student deserves a{" "}
+              <span className="relative inline-block">
+                <span className="ink-swap" data-text="‘Ms. Tidgwell year.’">
+                  &lsquo;Ms.&nbsp;Tidgwell&nbsp;year.&rsquo;
+                </span>
+              </span>
+              <span aria-hidden className="text-[color:var(--hot)] ml-1">
                 &rdquo;
               </span>
             </blockquote>
-            <figcaption className="mt-8 text-xs uppercase tracking-[0.22em] text-muted">
+            <figcaption className="mt-5 text-[11px] uppercase tracking-[0.22em] text-muted">
               — Student nomination, World Teachers&apos; Day Award
             </figcaption>
           </figure>
         </Container>
       </section>
 
-      {/* Table of contents — editorial ToC, headline pushed large */}
-      <Container className="py-24 md:py-32">
-        <div className="md:grid md:grid-cols-12 md:gap-10">
-          <div className="md:col-span-5">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted">
-              Table of contents
-            </p>
-            <h2 className="mt-6 h-display-lg font-display text-ink text-balance">
-              The four cornerstones of my{" "}
-              <em className="font-normal text-[color:var(--accent-2)]">
-                teaching career.
-              </em>
-            </h2>
-          </div>
-          <ol className="md:col-span-7 mt-10 md:mt-2">
-            {SECTIONS.map((s, i) => (
-              <li
-                key={s.href}
-                className={
-                  i === 0
-                    ? "border-t border-b border-rule"
-                    : "border-b border-rule"
-                }
+      {/* ============================================================
+          CORNERSTONES — bento of 4 photo-led tiles replacing the old
+          editorial ToC. Big, visual, less scrolling, more instant.
+          ============================================================ */}
+      <section className="border-t-[3px] border-ink bg-ink text-paper py-16 md:py-24 overflow-hidden">
+        <Container>
+          <div className="flex items-end justify-between gap-6 mb-10 md:mb-14">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="chip chip-citrus">Table of Contents</span>
+              </div>
+              <h2
+                className="font-display leading-[0.92] tracking-[-0.03em] text-paper text-balance"
+                style={{ fontSize: "clamp(2.25rem, 5.5vw + 0.5rem, 5.5rem)" }}
               >
-                <Link
-                  href={s.href}
-                  className="group grid grid-cols-12 gap-4 py-8 md:py-12 items-baseline hover:bg-highlight/40 -mx-4 px-4 transition-colors"
-                >
-                  <span className="col-span-2 md:col-span-2 font-display italic text-[color:var(--accent-2)] text-3xl md:text-[3rem] leading-none">
-                    {s.num}
-                  </span>
-                  <div className="col-span-10 md:col-span-8">
-                    <h3 className="font-display text-[1.75rem] md:text-[2.5rem] text-ink leading-[1.02] group-hover:text-accent transition-colors tracking-[-0.015em]">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 text-[0.95rem] leading-relaxed text-[color:var(--text-body)] max-w-2xl">
-                      {s.blurb}
-                    </p>
-                  </div>
-                  <span className="hidden md:flex col-span-2 items-center justify-end text-accent">
-                    <ArrowRight
-                      size={18}
-                      className="transition-transform group-hover:translate-x-1"
-                    />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </Container>
+                Four cornerstones.
+                <br />
+                <em className="font-normal text-[color:var(--citrus)]">
+                  One teaching career.
+                </em>
+              </h2>
+            </div>
+          </div>
 
-      <CtaStrip
-        headline="Looking forward to September 2026."
-        body="I'd love to hear what's happening in your building. Classroom teacher, teacher-librarian, or something else — I'm open to the right fit."
-        ctaLabel="Get in touch"
-        ctaHref="/contact"
-      />
+          {/* 2x2 bento on desktop, stacked on mobile */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
+            {CORNERSTONES.map((cs, i) => {
+              // Asymmetric spans: I spans 7, II spans 5; III spans 5, IV spans 7
+              const span = [
+                "md:col-span-7",
+                "md:col-span-5",
+                "md:col-span-5",
+                "md:col-span-7",
+              ][i];
+              return (
+                <Link
+                  key={cs.href}
+                  href={cs.href}
+                  className={`photo-tile reveal group relative min-h-[18rem] md:min-h-[26rem] ${span}`}
+                  style={{
+                    "--tilt-from": i % 2 === 0 ? "-1.5deg" : "1.5deg",
+                    "--tilt-to": "0deg",
+                  } as React.CSSProperties}
+                >
+                  <Image
+                    src={cs.photo}
+                    alt={cs.title.replace("&amp;", "&")}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                  <span className="tile-corner" />
+                  <div className="relative z-10 p-6 md:p-8 flex flex-col justify-between h-full">
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="font-display italic text-[color:var(--citrus)] text-[3rem] md:text-[4.5rem] leading-[0.78] drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+                        {cs.num}
+                      </span>
+                      <span className={`chip ${CHIP_TONE[cs.tint]}`}>
+                        {cs.chip}
+                      </span>
+                    </div>
+                    <div className="mt-auto max-w-xl">
+                      <h3
+                        className="font-display text-paper leading-[1.0] tracking-[-0.02em] text-balance drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
+                        style={{ fontSize: "clamp(1.75rem, 3vw, 2.75rem)" }}
+                        dangerouslySetInnerHTML={{ __html: cs.title + "." }}
+                      />
+                      <p className="mt-3 text-[0.95rem] md:text-base leading-[1.5] text-paper/90 max-w-prose">
+                        {cs.blurb}
+                      </p>
+                      <span className="mt-5 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[color:var(--citrus)] font-semibold">
+                        Open the room
+                        <ArrowUpRight
+                          size={16}
+                          className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* ============================================================
+          CTA STRIP — loud, kinetic, gradient-driven.
+          ============================================================ */}
+      <section className="relative overflow-hidden border-t-[3px] border-ink">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.9]"
+          style={{
+            background:
+              "linear-gradient(100deg, var(--hot) 0%, #FF8A3D 30%, var(--citrus) 65%, var(--hot) 100%)",
+            backgroundSize: "300% 100%",
+            animation: "grad-drift 6s linear infinite",
+          }}
+        />
+        <Container className="relative py-14 md:py-20">
+          <div className="md:grid md:grid-cols-12 md:gap-8 md:items-end">
+            <h2
+              className="md:col-span-8 font-display text-ink leading-[0.9] tracking-[-0.03em] text-balance"
+              style={{ fontSize: "clamp(2.25rem, 5.5vw + 0.5rem, 5.5rem)" }}
+            >
+              Looking forward to{" "}
+              <em className="font-normal">September 2026.</em>
+            </h2>
+            <div className="md:col-span-4 mt-6 md:mt-0">
+              <p className="text-base md:text-lg text-ink leading-[1.45] mb-6">
+                I&apos;d love to hear what&apos;s happening in your building.
+                Classroom teacher, teacher-librarian, or something else — I&apos;m
+                open to the right fit.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-ink text-paper px-6 py-3.5 text-sm font-medium hover:bg-[color:var(--accent-2)] transition-colors"
+              >
+                Get in touch
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
     </main>
   );
 }
