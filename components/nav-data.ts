@@ -9,7 +9,7 @@ export const NAV_GROUPS: NavGroup[] = [
     href: "/about",
     items: [
       { href: "/about", label: "Philosophy" },
-      { href: "/about/journey", label: "Journey" },
+      { href: "/about/journey", label: "Timeline" },
       { href: "/about/credentials", label: "Credentials" },
     ],
   },

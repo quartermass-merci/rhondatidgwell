@@ -142,7 +142,7 @@ export default function Philosophy() {
           href="/about/journey"
           className="inline-flex items-center text-sm font-medium text-ink hover:text-accent transition-colors min-h-[44px] border-b border-ink hover:border-accent px-1"
         >
-          See the journey
+          Career Timeline
           <ArrowRight size={16} className="ml-2" />
         </Link>
       </Container>

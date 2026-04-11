@@ -4,7 +4,7 @@ import { Timeline } from "@/components/timeline";
 import { Tbd } from "@/components/tbd";
 
 export const metadata = {
-  title: "Journey",
+  title: "Timeline",
   description:
     "A teaching life in the TDSB — from grade 6 classrooms to the Rivercrest library.",
 };
@@ -13,9 +13,9 @@ export default function Journey() {
   return (
     <main id="main" className="flex-1">
       <Hero
-        eyebrow="About · Journey"
-        title="Twenty-four years, five schools."
-        lede="A teaching life in the TDSB, from grade 6 classrooms to the Rivercrest library."
+        eyebrow="About"
+        title="Career Timeline."
+        lede="I've spent twenty-four years teaching with the TDSB across five schools. I've spent the majority of that time in a grade 6 classroom."
         size="lg"
       />
       <Container className="pb-24">

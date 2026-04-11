@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/container";
+import { Scramble } from "@/components/scramble";
 
 export const metadata = {
   title: "Assessment & Feedback",
@@ -44,9 +45,12 @@ export default function Assessment() {
         <Container>
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-center">
             <div className="col-span-12 md:col-span-7">
-              <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-muted">
-                Assessment &amp; Feedback
-              </p>
+              <Scramble
+                as="p"
+                className="text-[11px] font-medium uppercase tracking-[0.24em] text-muted"
+              >
+                Assessment & Feedback
+              </Scramble>
               <h1
                 className="mt-4 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
                 style={{ fontSize: "clamp(2.25rem, 6vw + 0.5rem, 5.75rem)" }}
@@ -64,7 +68,7 @@ export default function Assessment() {
                 know. Grades come last and they surprise no one.
               </p>
             </div>
-            <div className="col-span-12 md:col-span-5 grid grid-cols-2 gap-3">
+            <div className="col-span-12 md:col-span-5 grid grid-cols-2 gap-3 reveal-group">
               <figure className="photo-tile relative row-span-2 aspect-[3/5]">
                 <Image
                   src="/images/competencies/6/01.jpg"
@@ -98,7 +102,7 @@ export default function Assessment() {
       </section>
 
       {/* ROOMS — INK INVERTED 3-up */}
-      <section className="border-t-[3px] border-ink bg-ink text-paper py-10 md:py-14">
+      <section className="rule-draw rule-hot bg-ink text-paper py-10 md:py-14">
         <Container>
           <div className="flex items-end justify-between gap-6 mb-6 md:mb-8">
             <h2
@@ -115,7 +119,7 @@ export default function Assessment() {
               Growing Success
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 reveal-group">
             {ROOMS.map((r) => (
               <Link
                 key={r.href}

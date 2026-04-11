@@ -1,33 +1,18 @@
 import { Hero } from "@/components/hero";
-import { Container, Prose } from "@/components/container";
+import { Container } from "@/components/container";
 import { ContactForm } from "@/components/contact-form";
-import { Tbd } from "@/components/tbd";
 
 export const metadata = {
   title: "Contact",
-  description:
-    "Reach Rhonda Tidgwell — available for TDSB Teacher-Librarian roles starting September 2026.",
+  description: "Contact Rhonda Tidgwell.",
 };
 
 export default function Contact() {
   return (
     <main id="main" className="flex-1">
-      <Hero
-        eyebrow="Contact"
-        title="Let's talk."
-        lede="Available for TDSB Teacher-Librarian roles starting September 2026."
-        size="lg"
-      />
+      <Hero eyebrow="Contact" title="Get in touch." size="lg" />
       <Container className="pb-24">
-        <Prose>
-          <p>
-            The fastest way to reach me is email or phone. If you'd like a
-            conversation about a role or anything else on this site, send a
-            note and I'll reply the same day.
-          </p>
-        </Prose>
-
-        <div className="mt-12 grid gap-12 md:grid-cols-2">
+        <div className="grid gap-12 md:grid-cols-2">
           <section>
             <h2 className="text-xs font-medium uppercase tracking-[0.18em] text-muted pb-3 mb-5 border-b border-rule">
               Direct contact
@@ -41,8 +26,7 @@ export default function Contact() {
                     className="text-accent hover:underline"
                   >
                     rhonda.tidgwell@tdsb.on.ca
-                  </a>{" "}
-                  <Tbd>confirm TDSB vs. personal</Tbd>
+                  </a>
                 </dd>
               </div>
               <div>
@@ -55,12 +39,6 @@ export default function Contact() {
                 </dt>
                 <dd>#460584</dd>
               </div>
-              <div>
-                <dt className="text-xs uppercase tracking-widest text-muted">LinkedIn</dt>
-                <dd>
-                  <Tbd>TBD</Tbd>
-                </dd>
-              </div>
             </dl>
 
             <h2 className="mt-10 text-xs font-medium uppercase tracking-[0.18em] text-muted pb-3 mb-5 border-b border-rule">
@@ -68,11 +46,14 @@ export default function Contact() {
             </h2>
             <ul className="space-y-3 text-ink/90">
               <li>
-                Full CV (PDF) — <Tbd>TBD</Tbd>
-              </li>
-              <li>
-                Portfolio Summary One-Pager (PDF) —{" "}
-                <Tbd>generated from this site</Tbd>
+                <a
+                  href="/artifacts/rhonda-tidgwell-resume-2026.pdf"
+                  className="text-accent hover:underline"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Resume (PDF)
+                </a>
               </li>
             </ul>
 

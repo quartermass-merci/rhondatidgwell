@@ -16,14 +16,16 @@ export function ContactForm({ className }: { className?: string }) {
     const role = String(data.get("role") ?? "");
     const message = String(data.get("message") ?? "");
 
-    const subject = `Portfolio inquiry — ${name || "hiring team"}`;
+    const subject = `Message from rhondatidgwell.com${name ? ` — ${name}` : ""}`;
     const body = [
       `From: ${name}`,
       `Email: ${email}`,
-      `Role / School Board: ${role}`,
+      role ? `Context: ${role}` : "",
       "",
       message,
-    ].join("\n");
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     try {
       window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
@@ -39,7 +41,7 @@ export function ContactForm({ className }: { className?: string }) {
     <form onSubmit={handleSubmit} className={cn("max-w-xl space-y-5", className)}>
       <Field name="name" label="Your name" required />
       <Field name="email" label="Your email" type="email" required />
-      <Field name="role" label="Your role / school board" />
+      <Field name="role" label="Context (optional)" />
       <div>
         <label className="block text-sm font-medium text-ink" htmlFor="message">
           Message
@@ -56,11 +58,11 @@ export function ContactForm({ className }: { className?: string }) {
         type="submit"
         className="inline-flex w-full sm:w-auto items-center justify-center rounded-sm bg-accent px-6 py-3.5 text-sm font-medium text-paper hover:bg-accent/90 transition-colors min-h-[44px]"
       >
-        Send to Rhonda
+        Send message
       </button>
       {status === "success" && (
         <p className="text-sm text-muted">
-          Thanks — message received. I'll reply within 24 hours.
+          Thanks — message received.
         </p>
       )}
       {status === "error" && (

@@ -30,8 +30,7 @@ export default function Accessibility() {
           </p>
           <p>
             The site contains no student data, no tracking cookies, and no
-            third-party ads. Analytics are limited to understanding which
-            sections hiring teams actually read.
+            third-party ads.
           </p>
         </Prose>
       </Container>

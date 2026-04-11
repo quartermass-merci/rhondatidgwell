@@ -465,6 +465,203 @@ a .photo-tile { cursor: pointer; }
 .ink-swap:hover::before,
 a:hover .ink-swap::before { clip-path: inset(0 0 0 0); }
 
+/* ============================================================
+   DELIGHT LAYER — cursor, view transitions, section rule draw
+   ============================================================ */
+
+/* Magnetic cursor — inverted-blend dot + lagged ring.
+   Only active on devices with fine pointers (media query gate). */
+.magnetic-cursor-dot,
+.magnetic-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  html.has-magnetic-cursor {
+    cursor: none;
+  }
+  /* Still let natively-pointer things (text inputs, iframes) show OS cursor */
+  html.has-magnetic-cursor input,
+  html.has-magnetic-cursor textarea,
+  html.has-magnetic-cursor select,
+  html.has-magnetic-cursor [contenteditable] {
+    cursor: text;
+  }
+  .magnetic-cursor-dot,
+  .magnetic-cursor-ring {
+    display: block;
+  }
+}
+.magnetic-cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--hot);
+  mix-blend-mode: difference;
+  transition: width 160ms ease, height 160ms ease, background-color 160ms ease;
+}
+.magnetic-cursor-dot[data-hover="true"] {
+  width: 10px;
+  height: 10px;
+}
+.magnetic-cursor-ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1.5px solid var(--hot);
+  mix-blend-mode: difference;
+  transition:
+    border-color 220ms ease,
+    width 260ms cubic-bezier(0.34, 1.4, 0.64, 1),
+    height 260ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.magnetic-cursor-ring[data-hover="true"] {
+  border-color: var(--accent-2, var(--hot));
+}
+
+/* View Transitions — a quick paper-fade crossfade between routes plus a
+   slow-lift on the new page's main headline. Fires on any internal <a>
+   click intercepted by components/view-transitions.tsx. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 440ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+::view-transition-old(root) {
+  animation-name: page-fade-out;
+}
+::view-transition-new(root) {
+  animation-name: page-fade-in;
+}
+@keyframes page-fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.995);
+  }
+}
+@keyframes page-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem) scale(1.005);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Scroll-drawn section rule — a hand-inked line that writes itself across
+   the width of a section header as it enters view. Drop the class
+   `.rule-draw` on any element you'd otherwise apply border-top to. Pure CSS
+   with animation-timeline. Fallback = plain 1.5px rule. */
+.rule-draw {
+  position: relative;
+  border-top: 1.5px solid transparent;
+}
+.rule-draw::before {
+  content: "";
+  position: absolute;
+  inset: -1px 0 auto 0;
+  height: 2px;
+  background: var(--ink);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+@supports (animation-timeline: view()) {
+  .rule-draw::before {
+    animation: rule-ink linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+}
+@keyframes rule-ink {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.rule-draw.rule-hot::before {
+  background: var(--hot);
+  height: 3px;
+}
+/* No-JS / no-CSS-timeline fallback: render the line fully drawn. */
+@supports not (animation-timeline: view()) {
+  .rule-draw::before {
+    transform: scaleX(1);
+  }
+}
+
+/* Reveal stagger — descendants of a .reveal-group get a delayed reveal
+   using nth-child so photo grids feel like they're dealing themselves out.
+   Progressive enhancement: drops to instant. */
+.reveal-group > * {
+  opacity: 1;
+  transform: none;
+}
+@supports (animation-timeline: view()) {
+  .reveal-group > * {
+    animation: reveal-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 110%;
+  }
+  .reveal-group > :nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .reveal-group > :nth-child(2) {
+    animation-delay: 60ms;
+  }
+  .reveal-group > :nth-child(3) {
+    animation-delay: 120ms;
+  }
+  .reveal-group > :nth-child(4) {
+    animation-delay: 180ms;
+  }
+  .reveal-group > :nth-child(5) {
+    animation-delay: 240ms;
+  }
+  .reveal-group > :nth-child(6) {
+    animation-delay: 300ms;
+  }
+}
+
+/* Tiny "flourish" — coral underline that writes in on hover for any
+   element tagged .flourish (sub-competency numerals use this). */
+.flourish {
+  position: relative;
+  display: inline-block;
+}
+.flourish::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15em;
+  height: 2px;
+  background: var(--hot);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 360ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.flourish:hover::after,
+a:hover .flourish::after,
+li:hover .flourish::after {
+  transform: scaleX(1);
+}
+
 /* Audit M6 — honor prefers-reduced-motion globally */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -474,5 +671,12 @@ a:hover .ink-swap::before { clip-path: inset(0 0 0 0); }
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .magnetic-cursor-dot,
+  .magnetic-cursor-ring {
+    display: none !important;
+  }
+  html.has-magnetic-cursor {
+    cursor: auto;
   }
 }

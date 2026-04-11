@@ -3,6 +3,8 @@ import { Fraunces, Newsreader } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { LightboxRoot } from "@/components/lightbox";
+import { MagneticCursor } from "@/components/magnetic-cursor";
+import { ViewTransitions } from "@/components/view-transitions";
 import "./globals.css";
 
 // Display: Fraunces (keep — it's doing the editorial work).
@@ -61,6 +63,8 @@ export default function RootLayout({
         {children}
         <Footer />
         <LightboxRoot />
+        <MagneticCursor />
+        <ViewTransitions />
       </body>
     </html>
   );

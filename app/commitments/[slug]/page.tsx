@@ -82,7 +82,7 @@ export default async function CommitmentPage({
                 {c.intro}
               </p>
             </div>
-            <div className="col-span-12 md:col-span-5 grid grid-cols-2 gap-2 md:gap-3">
+            <div className="col-span-12 md:col-span-5 grid grid-cols-2 gap-2 md:gap-3 reveal-group">
               {heroPhotos.map((src, i) => (
                 <figure
                   key={src}
@@ -167,7 +167,7 @@ export default async function CommitmentPage({
                       className="bg-paper border-l-[3px] border-[color:var(--hot)] p-4 md:p-5 flex flex-col"
                     >
                       <div className="flex items-baseline gap-2.5">
-                        <span className="font-display italic text-[color:var(--hot)] text-lg leading-none shrink-0">
+                        <span className="font-display italic text-[color:var(--hot)] text-lg leading-none shrink-0 flourish">
                           {String(si + 1).padStart(2, "0")}
                         </span>
                         <h3 className="font-display text-[1.05rem] md:text-[1.15rem] text-ink leading-[1.18] tracking-[-0.01em]">
