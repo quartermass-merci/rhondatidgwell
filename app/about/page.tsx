@@ -5,47 +5,31 @@ import { Container } from "@/components/container";
 export const metadata = {
   title: "Teaching Philosophy",
   description:
-    "The philosophy behind twenty-four years of teaching, library work, and equity practice in the TDSB.",
+    "A philosophy of teaching grounded in equity, wellbeing, and achievement for every learner.",
 };
 
 export default function Philosophy() {
   return (
     <main id="main" className="flex-1">
-      {/* Quote-as-headline opener — monumental. Glyph escapes container. */}
-      <section className="pt-20 md:pt-32 pb-20 md:pb-28 overflow-hidden">
+      {/* Opener */}
+      <section className="pt-20 md:pt-28 pb-10 md:pb-14 overflow-hidden">
         <Container>
-          <div className="md:grid md:grid-cols-12 md:gap-10">
-            <div className="md:col-span-12 relative">
-              <span
-                aria-hidden
-                className="absolute -left-4 md:-left-20 -top-20 md:-top-36 font-display not-italic leading-[0.7] text-[color:var(--accent-2)] select-none pointer-events-none"
-                style={{ fontSize: "clamp(12rem, 26vw, 26rem)" }}
-              >
-                &ldquo;
-              </span>
-              <h1 className="relative font-display italic font-normal text-ink text-balance leading-[0.96] tracking-[-0.028em]"
-                  style={{ fontSize: "clamp(2.5rem, 7vw + 0.5rem, 7rem)" }}>
-                When a flower doesn&apos;t bloom,
-                <br />
-                you fix the{" "}
-                <em className="not-italic text-[color:var(--accent-2)]">
-                  environment
-                </em>{" "}
-                in which it grows.
-                <br />
-                <span className="text-outline">Not the flower.</span>
-              </h1>
-              <p className="mt-10 text-xs uppercase tracking-[0.22em] text-muted">
-                — Alexander Den Heijer · the sentence I keep coming back to
-              </p>
-            </div>
-          </div>
+          <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-muted">
+            About · Philosophy
+          </p>
+          <h1
+            className="mt-5 font-display font-normal text-ink text-balance leading-[0.92] tracking-[-0.03em]"
+            style={{ fontSize: "clamp(2.25rem, 6vw + 0.5rem, 5.75rem)" }}
+          >
+            Meeting students{" "}
+            <em className="font-normal text-[color:var(--accent-2)]">
+              where they are.
+            </em>
+          </h1>
         </Container>
       </section>
 
-      {/* Opening essay — left-aligned, 8-col well with a sticky eyebrow
-          label in the left margin. No pull-quote sidebar this time
-          (the quote IS the headline above). */}
+      {/* Philosophy essay — exact text */}
       <Container className="pb-16 md:pb-20 border-t border-rule pt-14 md:pt-20">
         <div className="md:grid md:grid-cols-12 md:gap-10">
           <aside className="md:col-span-3">
@@ -53,86 +37,103 @@ export default function Philosophy() {
               Philosophy
             </p>
           </aside>
-          <div className="md:col-span-9 mt-6 md:mt-0 max-w-[60ch]">
+          <div className="md:col-span-9 mt-6 md:mt-0 max-w-[62ch] space-y-6">
             <p className="dropcap text-[1.125rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
-              The classroom is a room where kids practice being people. The
-              library is the same room with better light and more books. My
-              job in both is to build the environment where students take
-              risks, get things wrong in public, and figure out they&apos;re
-              capable of more than they thought.
+              My philosophy of teaching is grounded in a deep commitment to
+              equity, wellbeing, and achievement for every learner. I believe
+              that education must move beyond &ldquo;best practice&rdquo;
+              toward a dynamic, reflective approach that models innovation
+              and critical thinking in the classroom. As an educator, I
+              strive to create learning environments that are responsive,
+              inclusive, and empowering—spaces where all students feel seen,
+              valued, and capable of success.
             </p>
-            <p className="mt-6 text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
-              I teach through inquiry because kids learn when they&apos;re
-              the ones asking. Success criteria get co-created so students
-              know what &quot;good&quot; looks like before they&apos;re
-              asked to make it. Universal Design for Learning is the
-              baseline, not the accommodation — because the alternative is
-              teaching most kids that school is something that happens to
-              them.
+            <p className="text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
+              Central to my practice is the belief in meeting students where
+              they are. Each learner arrives with unique strengths,
+              identities, experiences, and needs. My role is to both support
+              and challenge every student along their individual
+              journey—fostering academic achievement, nurturing personal
+              wellbeing, and cultivating a sense of global citizenship.
+              Through experiential learning and inquiry-based facilitation,
+              I encourage students to ask questions, think deeply, and
+              engage meaningfully with the world around them.
             </p>
-            <p className="mt-6 text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
-              Equity isn&apos;t a unit. It runs through Culturally Responsive
-              and Relevant Pedagogy and Indigenous Ways of Knowing, and it
-              shows up in who gets to see themselves in the books on the
-              shelf and whether the kid in the back of the classroom is
-              being reached or managed. Gholdy Muhammad&apos;s framework
-              anchors how I think about identity and genius in the work.
-              Twenty-four years in, I still know the difference.
+            <p className="text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
+              My approach to teaching is collaborative and trauma-informed,
+              grounded in an understanding that learning is deeply connected
+              to emotional safety and wellbeing. I honour intuition and
+              interconnectedness, recognizing that students learn not only
+              through intellect, but through relationships, experiences,
+              and a sense of belonging. Through a culturally responsive,
+              equity-focused lens, I am committed to addressing systemic
+              barriers while affirming the diverse identities and voices
+              within my classroom.
             </p>
-            <p className="mt-6 text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
-              After two-plus decades, the work still looks like this: meet
-              the kid where they are, and trust them with real questions.
-              The rest is craft.
+            <p className="text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
+              I intentionally co-create a safe and inclusive space where
+              students feel comfortable taking risks, making mistakes, and
+              learning from them. In this environment, learners feel seen,
+              heard, and supported in exploring both challenges and moments
+              of joy. I believe that when students feel a genuine sense of
+              trust and belonging, they are more willing to engage deeply,
+              think critically, and grow with confidence.
+            </p>
+            <p className="text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
+              Outside of the classroom, I find grounding and inspiration in
+              nature—planting, camping, hiking in the woods with my dogs,
+              practicing yoga, or reading a good book. These experiences
+              shape how I show up as an educator, bringing a sense of
+              presence, balance, and respect for the interconnected world
+              into my teaching practice.
+            </p>
+            <p className="text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
+              Ultimately, my goal is to support students in becoming
+              thoughtful, responsible, and engaged members of the global
+              community. By fostering critical thinking, empathy, and a
+              commitment to lifelong learning, I aim to empower each
+              student to navigate and contribute positively to an
+              ever-changing world.
+            </p>
+            <p className="pt-4 font-display italic text-xl md:text-2xl text-ink leading-[1.3]">
+              I&rsquo;m looking forward to learning, growing, and exploring
+              alongside you!
+            </p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted">
+              — Ms. Tidgwell
             </p>
           </div>
         </div>
       </Container>
 
-      {/* Identity rule — now a stacked editorial manifesto. Each word is
-          monumental and owns its own row. */}
-      <section className="border-t-[3px] border-ink py-16 md:py-24">
+      {/* Land acknowledgement */}
+      <section className="border-t-[3px] border-ink bg-highlight py-16 md:py-20">
         <Container>
-          <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted">
-            What I bring
-          </p>
-          <dl className="mt-10 border-t border-rule">
-            {[
-              {
-                word: "Teamwork",
-                sub: "Every good classroom is a collaboration.",
-              },
-              {
-                word: "Organization",
-                sub: "Structure is what makes creative risk safe.",
-              },
-              {
-                word: "Empathy",
-                sub: "Meet the kid where they actually are.",
-              },
-            ].map((item, i) => (
-              <div
-                key={item.word}
-                className="grid grid-cols-12 gap-4 md:gap-8 py-10 md:py-14 border-b border-rule items-baseline"
-              >
-                <dt className="col-span-2 md:col-span-1 font-display italic text-lg md:text-xl text-[color:var(--accent-2)]">
-                  {String(i + 1).padStart(2, "0")}
-                </dt>
-                <dd className="col-span-10 md:col-span-11">
-                  <p className="font-display text-ink leading-[0.92] tracking-[-0.035em]"
-                     style={{ fontSize: "clamp(2.5rem, 8vw + 0.5rem, 7rem)" }}>
-                    {i === 1 ? (
-                      <em className="not-italic">{item.word}.</em>
-                    ) : (
-                      <>{item.word}.</>
-                    )}
-                  </p>
-                  <p className="mt-5 font-display italic text-xl md:text-2xl text-muted max-w-[32ch]">
-                    {item.sub}
-                  </p>
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="md:grid md:grid-cols-12 md:gap-10">
+            <aside className="md:col-span-3">
+              <p className="md:sticky md:top-24 text-xs uppercase tracking-[0.2em] text-muted">
+                Land acknowledgement
+              </p>
+            </aside>
+            <div className="md:col-span-9 mt-6 md:mt-0 max-w-[62ch] space-y-6">
+              <p className="text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
+                I would like to acknowledge that we live, work, and play on
+                the traditional territories of many Indigenous nations,
+                including the Mississaugas of the Credit, the Anishinaabe,
+                the Haudenosaunee, and the Wendat peoples. Toronto is
+                covered by Treaty 13 with the Mississaugas of the Credit
+                First Nation and is also part of the Dish With One Spoon
+                Wampum Belt Covenant—an agreement to share and care for
+                this land in peace.
+              </p>
+              <p className="text-[1.0625rem] md:text-[1.1875rem] leading-[1.65] text-[color:var(--text-body)]">
+                I recognize the enduring presence, knowledge, and
+                contributions of Indigenous peoples, and I commit to
+                ongoing learning, reflection, and respect in my work and
+                relationships.
+              </p>
+            </div>
+          </div>
         </Container>
       </section>
 

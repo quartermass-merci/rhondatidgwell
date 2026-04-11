@@ -140,9 +140,9 @@ export default async function CommitmentPage({
               </div>
 
               {/* Body: photo column + 2x2 sub-competency cards */}
-              <div className="grid grid-cols-12 gap-4 md:gap-5">
+              <div className="grid grid-cols-12 gap-4 md:gap-5 items-stretch">
                 {/* Photo column — 2 stacked landscape shots */}
-                <div className="col-span-12 md:col-span-4 grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-3 content-start self-start">
+                <div className="col-span-12 md:col-span-4 grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-3 content-start">
                   {photos.slice(0, 2).map((src, pi) => (
                     <figure
                       key={src}
@@ -159,26 +159,26 @@ export default async function CommitmentPage({
                   ))}
                 </div>
 
-                {/* Sub-competency grid — 2x2 compact */}
-                <ol className="col-span-12 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-2.5 self-start">
+                {/* Sub-competency grid — 2x2, fills full height of photo column */}
+                <ol className="col-span-12 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 gap-3 md:gap-4 h-full">
                   {comp.subs.map((sub, si) => (
                     <li
                       key={si}
-                      className="bg-paper border-l-[3px] border-[color:var(--hot)] p-2.5 md:p-3"
+                      className="bg-paper border-l-[3px] border-[color:var(--hot)] p-4 md:p-5 flex flex-col"
                     >
-                      <div className="flex items-baseline gap-2">
-                        <span className="font-display italic text-[color:var(--hot)] text-sm leading-none shrink-0">
+                      <div className="flex items-baseline gap-2.5">
+                        <span className="font-display italic text-[color:var(--hot)] text-lg leading-none shrink-0">
                           {String(si + 1).padStart(2, "0")}
                         </span>
-                        <h3 className="font-display text-[0.88rem] md:text-[0.95rem] text-ink leading-[1.18] tracking-[-0.01em]">
+                        <h3 className="font-display text-[1.05rem] md:text-[1.15rem] text-ink leading-[1.18] tracking-[-0.01em]">
                           {sub.title}
                         </h3>
                       </div>
-                      <ul className="mt-1.5 space-y-0.5">
+                      <ul className="mt-2.5 space-y-1.5 flex-1">
                         {sub.bullets.map((b, bi) => (
                           <li
                             key={bi}
-                            className="text-[0.74rem] md:text-[0.78rem] leading-[1.35] text-[color:var(--text-body)] pl-3 relative before:content-['—'] before:absolute before:left-0 before:text-[color:var(--hot)]"
+                            className="text-[0.88rem] md:text-[0.94rem] leading-[1.45] text-[color:var(--text-body)] pl-3.5 relative before:content-['—'] before:absolute before:left-0 before:text-[color:var(--hot)]"
                           >
                             {b}
                           </li>

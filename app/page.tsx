@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/container";
-import { Ticker } from "@/components/ticker";
 import { COMMITMENTS, HOME_INTRO_QUOTE } from "@/content/commitments";
 
 export const metadata = {
@@ -122,20 +121,6 @@ export default function Home() {
           </div>
         </Container>
       </section>
-
-      <Ticker
-        tone="ink"
-        items={[
-          "Teacher-Librarian",
-          "K–5 STEAM + Coding",
-          "Multi-Language Learners",
-          "Inquiry-Driven",
-          "Makerspace",
-          "Forest of Reading",
-          "Equity-Forward",
-          "Since 2002",
-        ]}
-      />
 
       {/* ============================================================
           COMMITMENTS — section fills viewport. Compact header. Row
