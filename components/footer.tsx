@@ -1,53 +1,41 @@
 import Link from "next/link";
-
-const GROUPS = [
-  {
-    label: "About",
-    links: [
-      { href: "/about", label: "Philosophy" },
-      { href: "/about/journey", label: "Journey" },
-      { href: "/about/credentials", label: "Credentials" },
-    ],
-  },
-  {
-    label: "Practice",
-    links: [
-      { href: "/classroom", label: "Classroom" },
-      { href: "/library", label: "Library" },
-      { href: "/assessment", label: "Assessment" },
-      { href: "/leadership", label: "Leadership" },
-    ],
-  },
-  {
-    label: "Connect",
-    links: [{ href: "/contact", label: "Contact" }],
-  },
-];
+import { NAV_GROUPS } from "@/components/nav-data";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-rule bg-paper">
+    <footer className="mt-20 border-t-[3px] border-ink bg-paper">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-4">
-          <div>
-            <p className="font-display text-xl">Rhonda Tidgwell</p>
-            <p className="mt-2 text-sm text-muted">
-              Teacher-Librarian, Toronto District School Board.
+          <div className="md:col-span-1">
+            <p className="font-display text-2xl text-ink leading-tight">
+              Rhonda
+              <br />
+              <em className="font-normal text-[color:var(--accent-2)]">
+                Tidgwell.
+              </em>
+            </p>
+            <p className="mt-4 text-sm text-muted max-w-[20ch]">
+              Rivercrest Junior School · Toronto District School Board.
             </p>
           </div>
-          {GROUPS.map((g) => (
-            <div key={g.label}>
-              <p className="text-xs uppercase tracking-widest text-muted">
-                {g.label}
+          {NAV_GROUPS.map((group) => (
+            <div key={group.label}>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+                <Link
+                  href={group.href}
+                  className="hover:text-[color:var(--hot)] transition-colors"
+                >
+                  {group.label}
+                </Link>
               </p>
-              <ul className="mt-3 space-y-2">
-                {g.links.map((l) => (
-                  <li key={l.href}>
+              <ul className="mt-4 space-y-2.5">
+                {group.items.map((item) => (
+                  <li key={item.href}>
                     <Link
-                      href={l.href}
-                      className="text-sm text-ink/80 hover:text-accent"
+                      href={item.href}
+                      className="text-[0.88rem] text-ink/85 hover:text-[color:var(--hot)] transition-colors leading-snug"
                     >
-                      {l.label}
+                      {item.label}
                     </Link>
                   </li>
                 ))}
@@ -55,13 +43,23 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-12 pt-6 border-t border-rule flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        <div className="mt-14 pt-6 border-t border-rule flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
           <p className="text-xs text-muted">
-            © {new Date().getFullYear()} Rhonda Tidgwell. All rights reserved.
+            © {new Date().getFullYear()} Rhonda Tidgwell.{" "}
+            <Link
+              href="/contact"
+              className="hover:text-[color:var(--hot)] transition-colors"
+            >
+              Get in touch
+            </Link>
+            .
           </p>
           <p className="text-xs text-muted">
             This site contains no student data. See{" "}
-            <Link href="/accessibility" className="underline hover:text-accent">
+            <Link
+              href="/accessibility"
+              className="underline hover:text-[color:var(--hot)] transition-colors"
+            >
               accessibility statement
             </Link>
             .

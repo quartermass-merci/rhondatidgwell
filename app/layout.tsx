@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Newsreader } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { LightboxRoot } from "@/components/lightbox";
 import "./globals.css";
 
 // Display: Fraunces (keep — it's doing the editorial work).
@@ -59,6 +60,7 @@ export default function RootLayout({
         <Nav />
         {children}
         <Footer />
+        <LightboxRoot />
       </body>
     </html>
   );
