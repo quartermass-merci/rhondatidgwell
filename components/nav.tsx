@@ -8,10 +8,8 @@ import { cn } from "@/lib/cn";
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/classroom", label: "Classroom" },
-  { href: "/library", label: "Library" },
-  { href: "/assessment", label: "Assessment" },
-  { href: "/leadership", label: "Leadership" },
+  { href: "/#commitments", label: "Commitment to Students" },
+  { href: "/#cornerstones", label: "Four Cornerstones" },
   { href: "/contact", label: "Contact" },
 ];
 

@@ -382,10 +382,31 @@ h1, h2, h3 {
   inset: 0;
   background: linear-gradient(
     180deg,
-    transparent 40%,
-    color-mix(in oklab, var(--ink) 82%, transparent) 100%
+    color-mix(in oklab, var(--ink) 25%, transparent) 0%,
+    color-mix(in oklab, var(--ink) 10%, transparent) 30%,
+    color-mix(in oklab, var(--ink) 55%, transparent) 60%,
+    color-mix(in oklab, var(--ink) 92%, transparent) 100%
   );
   pointer-events: none;
+}
+
+/* Caption block that sits over the photo tile — adds its own
+   paper-thin ink wash so white type is legible on any image. */
+.tile-caption {
+  margin-top: auto;
+  padding: 0.9rem 1rem 0.9rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--ink) 0%, transparent) 0%,
+    color-mix(in oklab, var(--ink) 75%, transparent) 35%,
+    color-mix(in oklab, var(--ink) 88%, transparent) 100%
+  );
+  border-left: 3px solid var(--hot);
+  padding-left: 0.85rem;
+}
+.tile-caption h3,
+.tile-caption p {
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
 }
 .photo-tile .tile-corner {
   position: absolute;
