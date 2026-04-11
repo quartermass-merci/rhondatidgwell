@@ -123,8 +123,8 @@ export default function Library() {
         </Container>
       </section>
 
-      {/* ROOMS BENTO — fits one viewport */}
-      <section className="min-h-[calc(100svh-4rem)] flex flex-col justify-center border-t-[3px] border-ink bg-highlight py-8 md:py-10">
+      {/* ROOMS BENTO */}
+      <section className="border-t-[3px] border-ink bg-highlight py-10 md:py-14">
         <Container>
           <div className="flex items-end justify-between gap-6 mb-5 md:mb-7">
             <h2

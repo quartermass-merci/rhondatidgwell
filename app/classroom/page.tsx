@@ -97,8 +97,8 @@ export default function Classroom() {
         </Container>
       </section>
 
-      {/* ROOMS — stacked editorial index, fits one viewport */}
-      <section className="min-h-[calc(100svh-4rem)] flex flex-col justify-center border-t-[3px] border-ink bg-highlight py-6 md:py-8">
+      {/* ROOMS — stacked editorial index */}
+      <section className="border-t-[3px] border-ink bg-highlight py-10 md:py-14">
         <Container>
           <div className="flex items-end justify-between gap-6 mb-4 md:mb-5">
             <h2

@@ -114,7 +114,7 @@ export default async function CommitmentPage({
         return (
           <section
             key={comp.slug}
-            className={`min-h-[calc(100svh-4rem)] flex flex-col justify-center py-6 md:py-8 ${
+            className={`py-10 md:py-14 ${
               ci === 0 ? "border-t-[3px]" : "border-t"
             } border-ink/90 ${isEven ? "bg-highlight" : "bg-paper"}`}
           >

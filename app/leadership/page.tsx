@@ -100,8 +100,8 @@ export default function Leadership() {
         </Container>
       </section>
 
-      {/* ROOMS — timeline strips, fits one viewport */}
-      <section className="min-h-[calc(100svh-4rem)] flex flex-col justify-center border-t-[3px] border-ink bg-paper py-8 md:py-10">
+      {/* ROOMS — timeline strips */}
+      <section className="border-t-[3px] border-ink bg-paper py-10 md:py-14">
         <Container>
           <div className="flex items-end justify-between gap-6 mb-6 md:mb-8">
             <h2
