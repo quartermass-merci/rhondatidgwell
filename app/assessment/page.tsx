@@ -31,7 +31,7 @@ const ROOMS = [
     href: "/assessment/feedback",
     title: "Descriptive Feedback",
     blurb:
-      "Report card comments and feedback as a craft — written so a kid can act on them tomorrow.",
+      "Report card comments written so a kid can act on them tomorrow.",
     photo: "/images/competencies/6/03.jpg",
   },
 ];
@@ -39,7 +39,8 @@ const ROOMS = [
 export default function Assessment() {
   return (
     <main id="main" className="flex-1">
-      <section className="min-h-[calc(100svh-4rem)] flex items-center py-10 md:py-12 overflow-hidden">
+      {/* HERO */}
+      <section className="min-h-[calc(100svh-4rem)] flex items-center py-8 md:py-10 overflow-hidden">
         <Container>
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-center">
             <div className="col-span-12 md:col-span-7">
@@ -47,8 +48,8 @@ export default function Assessment() {
                 Assessment &amp; Feedback
               </p>
               <h1
-                className="mt-5 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
-                style={{ fontSize: "clamp(2.5rem, 7vw + 0.5rem, 7rem)" }}
+                className="mt-4 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
+                style={{ fontSize: "clamp(2.25rem, 6vw + 0.5rem, 5.75rem)" }}
               >
                 Assessment is a{" "}
                 <em className="font-normal text-[color:var(--accent-2)]">
@@ -56,12 +57,11 @@ export default function Assessment() {
                 </em>{" "}
                 not a verdict.
               </h1>
-              <p className="mt-7 text-[1rem] md:text-[1.05rem] leading-[1.6] text-[color:var(--text-body)] max-w-[56ch]">
-                The way we assess is the way we teach. Mine is rooted in
-                Ontario&apos;s Growing Success — clear learning goals,
-                co-created success criteria, feedback a kid can actually use,
-                and more than one way to show what they know. Grades come last
-                and they surprise no one.
+              <p className="mt-6 text-[1rem] leading-[1.6] text-[color:var(--text-body)] max-w-[56ch]">
+                Mine is rooted in Ontario&apos;s Growing Success — clear
+                learning goals, co-created success criteria, feedback a kid
+                can actually use, and more than one way to show what they
+                know. Grades come last and they surprise no one.
               </p>
             </div>
             <div className="col-span-12 md:col-span-5 grid grid-cols-2 gap-3">
@@ -97,14 +97,30 @@ export default function Assessment() {
         </Container>
       </section>
 
-      <section className="border-t-[3px] border-ink bg-highlight py-14 md:py-20">
+      {/* ROOMS — INK INVERTED 3-up, fits one viewport */}
+      <section className="min-h-[calc(100svh-4rem)] flex flex-col justify-center border-t-[3px] border-ink bg-ink text-paper py-8 md:py-10">
         <Container>
+          <div className="flex items-end justify-between gap-6 mb-6 md:mb-8">
+            <h2
+              className="font-display text-paper leading-[0.92] tracking-[-0.03em] text-balance"
+              style={{ fontSize: "clamp(1.75rem, 3.6vw + 0.4rem, 3.25rem)" }}
+            >
+              Three sides of{" "}
+              <em className="font-normal text-[color:var(--citrus)]">
+                the conversation
+              </em>
+              .
+            </h2>
+            <p className="hidden md:block text-[11px] uppercase tracking-[0.22em] text-paper/60 pb-2">
+              Growing Success
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
             {ROOMS.map((r) => (
               <Link
                 key={r.href}
                 href={r.href}
-                className="photo-tile reveal group relative min-h-[22rem] md:min-h-[26rem]"
+                className="photo-tile reveal group relative h-[48vh] md:h-[58vh]"
               >
                 <Image
                   src={r.photo}
@@ -114,21 +130,21 @@ export default function Assessment() {
                   className="object-cover"
                 />
                 <span className="tile-corner" />
-                <div className="relative z-10 p-6 md:p-7 flex flex-col justify-between h-full">
-                  <span className="font-display italic text-[color:var(--citrus)] text-[3rem] md:text-[3.75rem] leading-[0.78] drop-shadow-[0_3px_12px_rgba(0,0,0,0.7)]">
+                <div className="relative z-10 p-5 md:p-6 flex flex-col justify-between h-full">
+                  <span className="font-display italic text-[color:var(--citrus)] text-[2.5rem] md:text-[3.5rem] leading-[0.78]">
                     {r.num}
                   </span>
                   <div className="tile-caption">
-                    <h3 className="font-display text-paper leading-[1.05] tracking-[-0.015em] text-[1.25rem] md:text-[1.4rem] text-balance">
+                    <h3 className="font-display text-paper leading-[1.05] tracking-[-0.015em] text-[1.2rem] md:text-[1.45rem] text-balance">
                       {r.title}.
                     </h3>
-                    <p className="mt-2 text-[0.9rem] leading-[1.45] text-paper/95">
+                    <p className="mt-1.5 text-[0.85rem] leading-[1.45] text-paper/95">
                       {r.blurb}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[color:var(--citrus)] font-semibold">
+                    <span className="mt-3 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[color:var(--citrus)] font-semibold">
                       Read more
                       <ArrowUpRight
-                        size={14}
+                        size={13}
                         className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                       />
                     </span>

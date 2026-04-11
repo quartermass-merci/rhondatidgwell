@@ -38,8 +38,8 @@ const ROOMS = [
 export default function Classroom() {
   return (
     <main id="main" className="flex-1">
-      {/* HERO */}
-      <section className="min-h-[calc(100svh-4rem)] flex items-center py-10 md:py-12 overflow-hidden">
+      {/* HERO — fits viewport */}
+      <section className="min-h-[calc(100svh-4rem)] flex items-center py-8 md:py-10 overflow-hidden">
         <Container>
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-center">
             <div className="col-span-12 md:col-span-7">
@@ -47,8 +47,8 @@ export default function Classroom() {
                 Classroom Practice
               </p>
               <h1
-                className="mt-5 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
-                style={{ fontSize: "clamp(2.5rem, 7vw + 0.5rem, 7rem)" }}
+                className="mt-4 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
+                style={{ fontSize: "clamp(2.25rem, 6vw + 0.5rem, 5.75rem)" }}
               >
                 Nineteen years,
                 <br />
@@ -57,7 +57,7 @@ export default function Classroom() {
                 </em>{" "}
                 one room at a time.
               </h1>
-              <p className="mt-7 text-[1rem] md:text-[1.05rem] leading-[1.6] text-[color:var(--text-body)] max-w-[56ch]">
+              <p className="mt-6 text-[1rem] leading-[1.6] text-[color:var(--text-body)] max-w-[56ch]">
                 I taught Grades 4 through 8 in four TDSB middle schools before
                 moving into the library in 2021. My classroom was
                 inquiry-driven, scaffolded, and built around the kid in front
@@ -97,47 +97,62 @@ export default function Classroom() {
         </Container>
       </section>
 
-      {/* ROOMS GRID */}
-      <section className="border-t-[3px] border-ink bg-highlight py-14 md:py-20">
+      {/* ROOMS — stacked editorial index, fits one viewport */}
+      <section className="min-h-[calc(100svh-4rem)] flex flex-col justify-center border-t-[3px] border-ink bg-highlight py-6 md:py-8">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          <div className="flex items-end justify-between gap-6 mb-4 md:mb-5">
+            <h2
+              className="font-display text-ink leading-[0.92] tracking-[-0.03em] text-balance"
+              style={{ fontSize: "clamp(1.6rem, 3.2vw + 0.4rem, 2.8rem)" }}
+            >
+              Three rooms inside{" "}
+              <em className="font-normal text-[color:var(--accent-2)]">
+                one classroom
+              </em>
+              .
+            </h2>
+            <p className="hidden md:block text-[11px] uppercase tracking-[0.22em] text-muted pb-2">
+              Grades 4–8 · Four schools
+            </p>
+          </div>
+          <ol className="border-y-[1.5px] border-ink/25 divide-y-[1.5px] divide-ink/25">
             {ROOMS.map((r) => (
-              <Link
-                key={r.href}
-                href={r.href}
-                className="photo-tile reveal group relative min-h-[22rem] md:min-h-[26rem]"
-              >
-                <Image
-                  src={r.photo}
-                  alt={r.title}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover"
-                />
-                <span className="tile-corner" />
-                <div className="relative z-10 p-6 md:p-7 flex flex-col justify-between h-full">
-                  <span className="font-display italic text-[color:var(--citrus)] text-[3rem] md:text-[3.75rem] leading-[0.78] drop-shadow-[0_3px_12px_rgba(0,0,0,0.7)]">
+              <li key={r.href}>
+                <Link
+                  href={r.href}
+                  className="group grid grid-cols-12 gap-4 md:gap-6 items-center py-3 md:py-4 hover:bg-paper/50 transition-colors px-1"
+                >
+                  <span className="col-span-2 md:col-span-1 font-display italic text-[color:var(--hot)] text-3xl md:text-5xl leading-none">
                     {r.num}
                   </span>
-                  <div className="tile-caption">
-                    <h3 className="font-display text-paper leading-[1.05] tracking-[-0.015em] text-[1.25rem] md:text-[1.4rem] text-balance">
+                  <figure className="photo-tile col-span-4 md:col-span-2 relative aspect-[4/3]">
+                    <Image
+                      src={r.photo}
+                      alt={r.title}
+                      fill
+                      sizes="(min-width: 768px) 16vw, 33vw"
+                      className="object-cover"
+                    />
+                  </figure>
+                  <div className="col-span-6 md:col-span-8">
+                    <h3
+                      className="font-display text-ink leading-[1.05] tracking-[-0.02em] text-balance"
+                      style={{ fontSize: "clamp(1.05rem, 1.6vw + 0.4rem, 1.7rem)" }}
+                    >
                       {r.title}.
                     </h3>
-                    <p className="mt-2 text-[0.9rem] leading-[1.45] text-paper/95">
+                    <p className="mt-1 md:mt-1.5 text-[0.85rem] md:text-[0.92rem] text-[color:var(--text-body)] leading-[1.45] max-w-[52ch]">
                       {r.blurb}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[color:var(--citrus)] font-semibold">
-                      Read more
-                      <ArrowUpRight
-                        size={14}
-                        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                      />
-                    </span>
                   </div>
-                </div>
-              </Link>
+                  <ArrowUpRight
+                    size={22}
+                    className="hidden md:block md:col-span-1 text-[color:var(--hot)] ml-auto transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
+                  />
+                </Link>
+              </li>
             ))}
-          </div>
+          </ol>
         </Container>
       </section>
     </main>

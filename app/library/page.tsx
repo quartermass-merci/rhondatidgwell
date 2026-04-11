@@ -31,7 +31,7 @@ const ROOMS = [
     href: "/library/digital-citizenship",
     title: "Digital Citizenship",
     blurb:
-      "Not a list of things not to do — a media literacy practice for junior students.",
+      "Not a list of don'ts — a media literacy practice for junior students.",
     photo: "/images/competencies/15/03.jpg",
   },
   {
@@ -47,16 +47,27 @@ const ROOMS = [
     href: "/library/virtual-library",
     title: "Virtual Library",
     blurb:
-      "A year of Grade 6 Virtual School, two Teacher-Librarian AQs, and what it all taught me about the physical room.",
+      "A year of Grade 6 Virtual School and two Teacher-Librarian AQs.",
     photo: "/images/competencies/15/05.jpg",
   },
+];
+
+// Two-row asymmetric bento that fits one viewport:
+// Row 1: 01 (col 8) + 02 (col 4)
+// Row 2: 03 (col 4) + 04 (col 4) + 05 (col 4)
+const SPANS = [
+  "md:col-span-8",
+  "md:col-span-4",
+  "md:col-span-4",
+  "md:col-span-4",
+  "md:col-span-4",
 ];
 
 export default function Library() {
   return (
     <main id="main" className="flex-1">
       {/* HERO */}
-      <section className="min-h-[calc(100svh-4rem)] flex items-center py-10 md:py-12 overflow-hidden">
+      <section className="min-h-[calc(100svh-4rem)] flex items-center py-8 md:py-10 overflow-hidden">
         <Container>
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-center">
             <div className="col-span-12 md:col-span-7">
@@ -64,20 +75,19 @@ export default function Library() {
                 Library &amp; Learning Commons
               </p>
               <h1
-                className="mt-5 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
-                style={{ fontSize: "clamp(2.5rem, 7vw + 0.5rem, 7rem)" }}
+                className="mt-4 font-display font-normal text-ink leading-[0.88] tracking-[-0.035em] text-balance"
+                style={{ fontSize: "clamp(2.25rem, 6vw + 0.5rem, 5.75rem)" }}
               >
                 The library is the room where{" "}
                 <em className="font-normal text-[color:var(--accent-2)]">
                   every student belongs.
                 </em>
               </h1>
-              <p className="mt-7 text-[1rem] md:text-[1.05rem] leading-[1.6] text-[color:var(--text-body)] max-w-[56ch]">
+              <p className="mt-6 text-[1rem] leading-[1.6] text-[color:var(--text-body)] max-w-[56ch]">
                 Teacher-Librarian and ESL Teacher at Rivercrest Junior School
                 since 2021. K–5 library literacy, STEAM and coding, small-group
                 English language learners, and the school&apos;s Special Ed
-                resource. It&apos;s the room where curiosity gets to feel
-                safest.
+                resource.
               </p>
             </div>
             <div className="col-span-12 md:col-span-5 grid grid-cols-2 gap-3">
@@ -113,69 +123,64 @@ export default function Library() {
         </Container>
       </section>
 
-      {/* ROOMS GRID */}
-      <section className="border-t-[3px] border-ink bg-highlight py-14 md:py-20">
+      {/* ROOMS BENTO — fits one viewport */}
+      <section className="min-h-[calc(100svh-4rem)] flex flex-col justify-center border-t-[3px] border-ink bg-highlight py-8 md:py-10">
         <Container>
-          <h2
-            className="font-display text-ink leading-[0.92] tracking-[-0.03em] mb-10 md:mb-12"
-            style={{ fontSize: "clamp(2rem, 4vw + 0.5rem, 3.75rem)" }}
-          >
-            Five rooms inside{" "}
-            <em className="font-normal text-[color:var(--accent-2)]">
-              one library
-            </em>
-            .
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
-            {ROOMS.map((r, i) => {
-              // 01 big, 02+03 small, 04+05 split
-              const span = [
-                "md:col-span-7",
-                "md:col-span-5",
-                "md:col-span-5",
-                "md:col-span-7",
-                "md:col-span-12",
-              ][i];
-              return (
-                <Link
-                  key={r.href}
-                  href={r.href}
-                  className={`photo-tile reveal group relative min-h-[20rem] md:min-h-[24rem] ${span}`}
-                >
-                  <Image
-                    src={r.photo}
-                    alt={r.title}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                  <span className="tile-corner" />
-                  <div className="relative z-10 p-6 md:p-8 flex flex-col justify-between h-full">
-                    <span className="font-display italic text-[color:var(--citrus)] text-[3rem] md:text-[4rem] leading-[0.78] drop-shadow-[0_3px_12px_rgba(0,0,0,0.7)]">
-                      {r.num}
+          <div className="flex items-end justify-between gap-6 mb-5 md:mb-7">
+            <h2
+              className="font-display text-ink leading-[0.92] tracking-[-0.03em] text-balance"
+              style={{ fontSize: "clamp(1.75rem, 3.6vw + 0.4rem, 3.25rem)" }}
+            >
+              Five rooms inside{" "}
+              <em className="font-normal text-[color:var(--accent-2)]">
+                one library
+              </em>
+              .
+            </h2>
+            <p className="hidden md:block text-[11px] uppercase tracking-[0.22em] text-muted pb-2">
+              Rivercrest · K–5
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+            {ROOMS.map((r, i) => (
+              <Link
+                key={r.href}
+                href={r.href}
+                className={`photo-tile reveal group relative h-[26vh] md:h-[30vh] ${SPANS[i]}`}
+              >
+                <Image
+                  src={r.photo}
+                  alt={r.title}
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover"
+                />
+                <span className="tile-corner" />
+                <div className="relative z-10 p-4 md:p-5 flex flex-col justify-between h-full">
+                  <span className="font-display italic text-[color:var(--citrus)] text-[2.25rem] md:text-[3rem] leading-[0.78]">
+                    {r.num}
+                  </span>
+                  <div className="tile-caption max-w-md">
+                    <h3
+                      className="font-display text-paper leading-[1.05] tracking-[-0.015em] text-balance"
+                      style={{ fontSize: "clamp(1.1rem, 1.6vw + 0.3rem, 1.6rem)" }}
+                    >
+                      {r.title}.
+                    </h3>
+                    <p className="mt-1 text-[0.82rem] md:text-[0.88rem] leading-[1.4] text-paper/95 max-w-prose">
+                      {r.blurb}
+                    </p>
+                    <span className="mt-2 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[color:var(--citrus)] font-semibold">
+                      Open the room
+                      <ArrowUpRight
+                        size={13}
+                        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      />
                     </span>
-                    <div className="tile-caption max-w-xl">
-                      <h3
-                        className="font-display text-paper leading-[1.04] tracking-[-0.015em] text-balance"
-                        style={{ fontSize: "clamp(1.4rem, 2.4vw, 2.2rem)" }}
-                      >
-                        {r.title}.
-                      </h3>
-                      <p className="mt-2 text-[0.92rem] md:text-base leading-[1.5] text-paper/95 max-w-prose">
-                        {r.blurb}
-                      </p>
-                      <span className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[color:var(--citrus)] font-semibold">
-                        Open the room
-                        <ArrowUpRight
-                          size={14}
-                          className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                        />
-                      </span>
-                    </div>
                   </div>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            ))}
           </div>
         </Container>
       </section>
